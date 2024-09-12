@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="Pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfóli</title>
+    <link rel="stylesheet" href="estilo/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dosis:wght@200..800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Dosis:wght@200..800&family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <img src="img/profile2.jpg" alt="logo">
+        <h1>Portfólio</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#trabalhos">Trabalhos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="inicio" id="inicio">
+            <div class="redes">
+                <ul>
+                    <li><a href="https://github.com/ThiagoHeckler" target="_blank"><img class="icone"
+                                src="img/github.png"></a></li>
+                    <li><a href="https://www.linkedin.com/in/thiago-emanuel-correia-heckler-77ba27268/"
+                            target="_blank"><img class="icone" src="img/linkedin.png"></a></li>
+                    <li><a href="https://www.workana.com/freelancer/447f9dfeedd20fb0fe8a9e72eb8062ed"
+                            target="_blank"><img class="icone" src="img/workana.png"></a></li>
+                    <li><a href="https://www.instagram.com/heckler.projetosdev/" target="_blank"><img class="icone"
+                                src="img/instagram.png"></a></li>
+                </ul>
+            </div>
+            <div class="aviso">
+                <span>Web Developer </span>
+                <a href="#trabalhos">
+                    <button>Projetos</button>
+                </a>
+            </div>
+        </div>
+        <div class="sobre">
+            <div class="sobre_escrita" id="sobre">
+                <img src="img/thigas.jpeg" alt="foto">
+                <div class="escrita">
+                    <h2>Sobre:</h2>
+                    <p>Meu nome é <strong>Thiago</strong>, sou desenvolvedor front end e estou em busca de novos
+                        desafios. Atualmente trabalho em uma contabilidade mas busco meu primeiro emprego na carreira ou
+                        até
+                        mesmo trabalhos temporarios para o meu desenvolvimento como desenvolvedor.
+                    </p>
+                    <p> Estudo na Universidade do Oeste de Santa Catarina, no curso de Ciência da Computação.<br>
+                        No momento estou estudando para me tornar um desenvolvedor full stack.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="conteudo">
+            <div class="trabalhos" id="trabalhos">
+                <h2>- Projetos</h2>
+                <div class="trabalho">
+                    <img src="img/telaweb1.jpg">
+                    <div class="trabalho_descricao">
+                        <h3>Cadastro e Login de Usuarios</h3>
+                        <p>Projeto basico de cadastro de usuario e login, lincado com banco de dados.</p>
+                    </div>
+                </div>
+                <div class="trabalho">
+                    <img src="img/telaweb2.jpg">
+                    <div class="trabalho_descricao">
+                        <h3>Gerenciamento de Pedidos</h3>
+                        <p>Projeto de gerenciamento de pedidos, um CRUD simples mas funcional conectado com banco de
+                            dados para a gestão de produtos, vendas, cadastro, alteração e exclusão.</p>
+                    </div>
+                </div>
+                <div class="trabalho">
+                    <img src="img/telaweb3.jpg">
+                    <div class="trabalho_descricao">
+                        <h3>Banco de Dados Biblioteca</h3>
+                        <p>Projeto de banco de dados de uma biblioteca acadêmica.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contato" id="contato">
+            <div class="informacoes">
+                <h2>Contate via redes sociais</h2>
+                <p>Para mais informações e contato com Thiago Hekcler acesse minhas redes sociais ou envie um e-mail na
+                    caixa ao lado</p>
+                <div class="icones_informacoes">
+                    <a href="https://www.linkedin.com/in/thiago-emanuel-correia-heckler-77ba27268/" target="_blank"><img
+                            class="icone" src="img/linkedin.png"></a>
+                    <a href="https://github.com/ThiagoHeckler" target="_blank"><img class="icone"
+                            src="img/github.png"></a>
+                    <a href="https://www.workana.com/freelancer/447f9dfeedd20fb0fe8a9e72eb8062ed" target="_blank"><img
+                            class="icone" src="img/workana.png"></a>
+                    <a href="https://www.instagram.com/heckler.projetosdev/" target="_blank"><img class="icone"
+                            src="img/instagram.png"></a>
+                </div>
+            </div>
+            <form action="script/enviar.php" method="POST">
+                <h2>Contate-me:</h2>
+                Seu nome:<br />
+                <input name="nome" type="text" placeholder="Nome" required>
+                Seu E-mail:<br />
+                <input name="email" type="email" placeholder="Email" required>
+                Sua Mensagem:
+                <textarea name="mensagem" rows="5" placeholder="Mensagem" required></textarea>
+                <input class="botao" type="submit" value="Enviar" />
+                <input class="botao" type="reset" value="Limpar" />
+            </form>
+    </main>
+</body>
+
+</html>
