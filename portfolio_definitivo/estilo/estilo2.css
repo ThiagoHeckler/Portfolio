@@ -111,12 +111,9 @@ article {
   padding: 1em;
   margin: 1em;
   border-radius: 14px;
-  box-shadow: 7px 7px 10px var(--neutral-purple);
+  box-shadow: 0px 0px 10px var(--neutral-purple);
   display: flex;
   align-items: center;
-}
-.page-sobre article {
-  box-shadow: 7px 7px 10px var(--neutral-green);
 }
 
 article:hover {
@@ -126,28 +123,34 @@ article:hover {
   color: white;
 }
 
+.page-sobre article {
+  box-shadow: 0px 0px 10px var(--neutral-green);
+  & h1 {
+    color: var(--neutral-green);
+  }
+}
+
 .page-sobre article:hover {
-  box-shadow: 20px 20px 20px var(--neutral-green);
+  box-shadow: -20px 20px 20px var(--neutral-green);
 }
 
 .page-trabalhos article {
-  box-shadow: 7px 7px 10px var(--neutral-purple),
-    -7px -7px 10px var(--neutral-green);
+  box-shadow: 0px 0px 10px var(--neutral-purple);
 }
 
 .page-trabalhos article:hover {
-  box-shadow: 20px 20px 20px var(--neutral-purple),
-    -20px -20px 20px var(--neutral-green);
+  box-shadow: -20px -20px 20px var(--neutral-purple);
 }
 
 .page-contato article {
-  box-shadow: 7px 7px 10px var(--neutral-green),
-    -7px -7px 10px var(--neutral-purple);
+  box-shadow: 0px 0px 10px var(--neutral-green);
+  & h2 {
+    color: var(--neutral-green);
+  }
 }
 
 .page-contato article:hover {
-  box-shadow: 20px 20px 20px var(--neutral-green),
-    -20px -20px 20px var(--neutral-purple);
+  box-shadow: 20px -20px 20px var(--neutral-green);
 }
 
 section {
@@ -155,7 +158,8 @@ section {
   margin: 1em;
   border-radius: 5px;
   height: max-content;
-  & h2 {
+  & h2,
+  h1 {
     text-align: center;
     font-family: "Raleway", sans-serif;
     font-optical-sizing: auto;
@@ -189,14 +193,64 @@ figure {
     width: 30vh;
     height: 40vh;
     border-radius: 14px;
-    box-shadow: 0px 0px 10px var(--neutral-green);
   }
 }
+
+.page-contato article section ul {
+  display: flex;
+  flex-direction: inherit;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-contato article section ul li {
+  margin: 10px;
+
+  padding: 5px 15px;
+  border-radius: 2px;
+}
+
+.page-contato article section ul li a {
+  color: white;
+  text-decoration: none;
+}
+
 .swiper {
   width: 600px;
-  height: 300px;
+  height: auto;
 }
 .swiper-button-prev,
 .swiper-button-next {
   color: var(--neutral-purple);
+}
+.swiper-wrapper {
+  display: flex;
+  flex-direction: row;
+  & h1 {
+    color: var(--neutral-light);
+    text-align: start;
+  }
+}
+
+.swiper-slide p {
+  color: var(--neutral-light);
+  text-align: justify;
+  font-size: 20px;
+  line-height: 1.5;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.swiper-slide figure {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  align-content: end;
+  & img {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 14px;
+  }
 }
