@@ -1,0 +1,55 @@
+# ============================================================
+# Caddyfile — thiagoheckler.com.br
+# HTTPS automático via Let's Encrypt (HTTP challenge).
+# Adicionar um projeto novo = copiar um bloco de 3 linhas.
+# ============================================================
+
+{
+	email seu-email@exemplo.com   # avisos de renovação de certificado
+}
+
+# ---------- Site principal (estático, sem JVM) ----------
+thiagoheckler.com.br {
+	root * /srv/site
+	file_server
+	encode gzip
+
+	# Cache agressivo p/ assets, nenhum p/ HTML
+	@static path *.css *.js *.png *.jpg *.svg *.webp *.woff2
+	header @static Cache-Control "public, max-age=31536000, immutable"
+}
+
+# Redireciona www -> raiz
+www.thiagoheckler.com.br {
+	redir https://thiagoheckler.com.br{uri} permanent
+}
+
+# ---------- Projetos (subdomínios) ----------
+siscontabil.thiagoheckler.com.br {
+	reverse_proxy siscontabil:8080
+}
+
+tasks.thiagoheckler.com.br {
+	reverse_proxy task-api:8080
+}
+
+links.thiagoheckler.com.br {
+	reverse_proxy link-shortener:8080
+}
+
+estoque.thiagoheckler.com.br {
+	reverse_proxy estoque-dashboard:8080
+}
+
+chat.thiagoheckler.com.br {
+	# WebSocket funciona sem config extra — o Caddy faz upgrade sozinho
+	reverse_proxy chat:8080
+}
+
+auth.thiagoheckler.com.br {
+	reverse_proxy auth-service:8080
+}
+
+pizzaria.thiagoheckler.com.br {
+	reverse_proxy pizzaria:8080
+}
