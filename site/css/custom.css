@@ -43,7 +43,7 @@
   --pico-border-radius: 10px;
 }
 
-body {
+html {
   /* respiro pra header sticky não colar no conteúdo */
   scroll-padding-top: 5rem;
 }
