@@ -1,5 +1,280 @@
 <!doctype html>
-<html lang="pt-BR">
-<head><meta charset="utf-8"><title>Thiago Heckler</title></head>
-<body><h1>Em construção</h1></body>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Thiago Heckler — Desenvolvedor Backend Java</title>
+  <meta name="description"
+        content="Portfólio de backend em Java 25 e Spring Boot 4: sete projetos no ar numa única VPS, cada decisão de arquitetura explicada.">
+
+  <!-- Pico self-hospedado (sem CDN). Baixado em site/css/. -->
+  <link rel="stylesheet" href="/css/pico.min.css">
+  <link rel="stylesheet" href="/css/custom.css">
+</head>
+
+<body>
+
+  <!-- ============================ HEADER ============================ -->
+  <header class="site-header">
+    <nav class="container">
+      <ul>
+        <li>
+          <a class="wordmark" href="/">thiago<span class="accent">.dev</span></a>
+        </li>
+      </ul>
+      <ul>
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#arquitetura">Arquitetura</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <!-- TODO: confirmar handle do GitHub -->
+        <li><a href="https://github.com/ThiagoHeckler" target="_blank" rel="noopener">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- ============================= HERO ============================= -->
+    <section class="hero">
+      <p class="eyebrow">Thiago Heckler · desenvolvedor backend</p>
+      <h1>Sete projetos Spring Boot no ar, numa única VPS de 1&nbsp;vCPU.</h1>
+      <p class="lead">
+        Cada projeto existe pra demonstrar uma decisão de engenharia — de qual
+        banco usar a como fazer sete JVMs caberem em 4&nbsp;GB de RAM. O porquê
+        de cada escolha está aqui e explicado dentro de cada projeto.
+        <!-- TODO: ajustar essa frase pro seu tom -->
+      </p>
+      <div class="hero-actions">
+        <a href="#projetos" role="button">Ver projetos</a>
+        <a href="https://github.com/ThiagoHeckler" role="button" class="secondary"
+           target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+
+    <!-- ======================== ARQUITETURA ========================= -->
+    <section class="arch" id="arquitetura">
+      <p class="eyebrow">como isto roda</p>
+      <div class="arch-grid">
+        <div class="arch-item">
+          <div class="k">1 vCPU · 4 GB</div>
+          <div class="v">VPS única, com 2 GB de swap</div>
+        </div>
+        <div class="arch-item">
+          <div class="k">Docker Compose</div>
+          <div class="v">tudo orquestrado num arquivo</div>
+        </div>
+        <div class="arch-item">
+          <div class="k">1 PG + 1 Mongo</div>
+          <div class="v">uma instância de cada, um DB por projeto</div>
+        </div>
+        <div class="arch-item">
+          <div class="k">384 MB / app</div>
+          <div class="v">limite de RAM por container</div>
+        </div>
+        <div class="arch-item">
+          <div class="k">Caddy</div>
+          <div class="v">HTTPS automático por subdomínio</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================== PROJETOS ========================== -->
+    <section class="section" id="projetos">
+      <p class="eyebrow">projetos</p>
+      <h2>Sete projetos, sete decisões de banco</h2>
+      <p class="section-lead">
+        A escolha do banco vem da forma do dado, não da moda. Postgres quando a
+        consistência manda; Mongo quando o dado é documento. Cada card diz o porquê.
+      </p>
+
+      <div class="projects-grid">
+
+        <!-- 1. SisContabil -->
+        <article class="project">
+          <div class="project-top">
+            <h3>SisContabil</h3>
+            <a class="project-url" href="https://siscontabil.thiagoheckler.com.br"
+               target="_blank" rel="noopener">siscontabil.</a>
+          </div>
+          <p class="project-desc">Sistema contábil com lançamentos e relatórios.</p>
+          <div class="why why--pg">
+            <span class="badge badge--pg">PostgreSQL</span>
+            <p>Dados financeiros exigem ACID e integridade referencial forte.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Spring Boot 4</span>
+            <span class="tag">JPA</span>
+            <span class="tag">Thymeleaf</span>
+          </div>
+        </article>
+
+        <!-- 2. Task API -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Task API</h3>
+            <a class="project-url" href="https://tasks.thiagoheckler.com.br"
+               target="_blank" rel="noopener">tasks.</a>
+          </div>
+          <p class="project-desc">API REST de tarefas, com Swagger UI pra testar ao vivo.</p>
+          <div class="why why--pg">
+            <span class="badge badge--pg">PostgreSQL</span>
+            <p>CRUD relacional clássico — o caso pra mostrar JPA limpo.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Spring Boot 4</span>
+            <span class="tag">JPA</span>
+            <span class="tag">OpenAPI</span>
+          </div>
+        </article>
+
+        <!-- 3. Link Shortener -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Link Shortener</h3>
+            <a class="project-url" href="https://links.thiagoheckler.com.br"
+               target="_blank" rel="noopener">links.</a>
+          </div>
+          <p class="project-desc">Encurtador de URLs com analytics de cliques.</p>
+          <div class="why why--mongo">
+            <span class="badge badge--mongo">MongoDB</span>
+            <p>Documentos simples, leitura intensa e contadores de clique.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Spring Boot 4</span>
+            <span class="tag">Spring Data Mongo</span>
+          </div>
+        </article>
+
+        <!-- 4. Estoque Dashboard -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Estoque Dashboard</h3>
+            <a class="project-url" href="https://estoque.thiagoheckler.com.br"
+               target="_blank" rel="noopener">estoque.</a>
+          </div>
+          <p class="project-desc">Painel de estoque com relatórios e gráficos.</p>
+          <div class="why why--pg">
+            <span class="badge badge--pg">PostgreSQL</span>
+            <p>Relatórios pedem agregações SQL e joins entre tabelas.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Spring Boot 4</span>
+            <span class="tag">JPA</span>
+            <span class="tag">Thymeleaf</span>
+          </div>
+        </article>
+
+        <!-- 5. Chat em tempo real -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Chat em tempo real</h3>
+            <a class="project-url" href="https://chat.thiagoheckler.com.br"
+               target="_blank" rel="noopener">chat.</a>
+          </div>
+          <p class="project-desc">Mensagens ao vivo via WebSocket / STOMP.</p>
+          <div class="why why--mongo">
+            <span class="badge badge--mongo">MongoDB</span>
+            <p>Mensagem é documento; escrita intensa e schema flexível.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Spring Boot 4</span>
+            <span class="tag">WebSocket</span>
+            <span class="tag">STOMP</span>
+          </div>
+        </article>
+
+        <!-- 6. Auth Service -->
+        <article class="project">
+          <div class="project-top">
+            <h3>Auth Service</h3>
+            <a class="project-url" href="https://auth.thiagoheckler.com.br"
+               target="_blank" rel="noopener">auth.</a>
+          </div>
+          <p class="project-desc">Autenticação e autorização com JWT.</p>
+          <div class="why why--pg">
+            <span class="badge badge--pg">PostgreSQL</span>
+            <p>Usuários, roles e tokens exigem consistência forte.</p>
+          </div>
+          <div class="tags">
+            <span class="tag">Spring Boot 4</span>
+            <span class="tag">Spring Security</span>
+            <span class="tag">JWT</span>
+          </div>
+        </article>
+
+        <!-- 7. Pizzaria Bollo — poliglota, em destaque -->
+        <article class="project project--featured">
+          <div class="featured-inner">
+            <div>
+              <div class="project-top">
+                <h3>Pizzaria Bollo</h3>
+                <a class="project-url" href="https://pizzaria.thiagoheckler.com.br"
+                   target="_blank" rel="noopener">pizzaria.</a>
+              </div>
+              <p class="project-desc" style="margin-top:.6rem">
+                O projeto que junta os dois mundos: recebe pedidos e serve um
+                cardápio. Persistência poliglota — cada banco no que faz melhor.
+              </p>
+              <div class="tags" style="margin-top:.85rem">
+                <span class="tag">Spring Boot 4</span>
+                <span class="tag">JPA</span>
+                <span class="tag">Spring Data Mongo</span>
+                <span class="tag">Thymeleaf</span>
+              </div>
+            </div>
+            <div class="why why--both">
+              <span class="badge badge--pg">PostgreSQL</span>
+              <span class="badge badge--mongo">MongoDB</span>
+              <p>
+                Pedidos vão pro Postgres, onde a transação garante que nada se
+                perde. O cardápio vive no Mongo, com documentos aninhados
+                (ingredientes, tamanhos, variações) sem virar dez tabelas.
+              </p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================ SOBRE ============================ -->
+    <section class="section about" id="sobre">
+      <p class="eyebrow">sobre</p>
+      <h2>Quem constrói isto</h2>
+      <!-- TODO: sua bio real. Rascunho abaixo pra você reescrever. -->
+      <p>
+        Desenvolvedor backend focado em Java e no ecossistema Spring. Gosto de
+        problemas onde a decisão certa não é a mais nova, e sim a que cabe na
+        restrição — de orçamento de memória a forma do dado. Este portfólio é
+        isso na prática: sete sistemas reais, no ar, construídos e explicados
+        um a um.
+      </p>
+      <p>
+        <!-- TODO: trocar por links reais -->
+        <a href="https://github.com/ThiagoHeckler" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a> ·
+        <a href="mailto:contato@thiagoheckler.com.br">contato@thiagoheckler.com.br</a>
+      </p>
+    </section>
+
+  </main>
+
+  <!-- ============================ FOOTER ============================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-stack">
+        Java 25 · Spring Boot 4 · PostgreSQL 17 · MongoDB 8 · Docker · Caddy
+      </p>
+      <div class="footer-links">
+        <a href="https://github.com/ThiagoHeckler" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:contato@thiagoheckler.com.br">Email</a>
+      </div>
+      <p class="footer-note">
+        Site estático, servido direto pelo Caddy. Feito com Pico.css.
+      </p>
+    </div>
+  </footer>
+
+</body>
 </html>

@@ -1,0 +1,266 @@
+/* ============================================================
+   custom.css — camada fina sobre o Pico
+   Só o que o Pico não entrega: tema, grid de projetos,
+   badges de banco e o motivo âncora de cada card.
+   ============================================================ */
+
+:root {
+  --brand-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code",
+                Menlo, Consolas, monospace;
+
+  /* Cores dos bancos — usadas nos badges e nas bordas de motivo */
+  --db-pg: #7db8e8;
+  --db-pg-bg: rgba(74, 143, 199, 0.12);
+  --db-pg-border: rgba(74, 143, 199, 0.35);
+  --db-mongo: #6fd89b;
+  --db-mongo-bg: rgba(75, 191, 115, 0.12);
+  --db-mongo-border: rgba(75, 191, 115, 0.35);
+}
+
+/* Tema escuro forçado (decisão consciente, não segue o SO do visitante) */
+[data-theme="dark"] {
+  --pico-background-color: #12151c;
+  --pico-color: #e8eaed;
+  --pico-h1-color: #f4f6f8;
+  --pico-h2-color: #f4f6f8;
+  --pico-h3-color: #eceef1;
+  --pico-muted-color: #9aa0aa;
+  --pico-muted-border-color: #262b36;
+
+  /* Acento âmbar — distinto do azul PG e do verde Mongo de propósito */
+  --pico-primary: #e0a458;
+  --pico-primary-background: #e0a458;
+  --pico-primary-hover: #ecb977;
+  --pico-primary-hover-background: #ecb977;
+  --pico-primary-underline: rgba(224, 164, 88, 0.4);
+  --pico-primary-focus: rgba(224, 164, 88, 0.3);
+  --pico-primary-inverse: #12151c;
+
+  --pico-card-background-color: #1a1e27;
+  --pico-card-border-color: #262b36;
+  --pico-card-sectioning-background-color: #1a1e27;
+
+  --pico-border-radius: 10px;
+}
+
+body {
+  /* respiro pra header sticky não colar no conteúdo */
+  scroll-padding-top: 5rem;
+}
+
+/* -------- Wordmark e eyebrows em monospace (textura de infra) -------- */
+.mono { font-family: var(--brand-mono); }
+
+.eyebrow {
+  font-family: var(--brand-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--pico-muted-color);
+  margin-bottom: 0.5rem;
+}
+.eyebrow::before {
+  content: "// ";
+  color: var(--pico-primary);
+}
+
+/* -------------------------- Header / nav -------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(18, 21, 28, 0.82);
+  backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--pico-muted-border-color);
+}
+.site-header nav { padding-block: 0.4rem; }
+.wordmark {
+  font-family: var(--brand-mono);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--pico-color);
+  text-decoration: none;
+}
+.wordmark .accent { color: var(--pico-primary); }
+.site-header nav ul:last-child a {
+  color: var(--pico-muted-color);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.site-header nav ul:last-child a:hover { color: var(--pico-color); }
+
+/* ------------------------------ Hero ------------------------------ */
+.hero { padding-block: clamp(3rem, 9vw, 6rem); }
+.hero h1 {
+  font-size: clamp(2rem, 5.5vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 16ch;
+  margin-bottom: 1.1rem;
+}
+.hero .lead {
+  font-size: 1.12rem;
+  color: var(--pico-muted-color);
+  max-width: 56ch;
+  margin-bottom: 2rem;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.hero-actions .secondary {
+  --pico-background-color: transparent;
+  --pico-border-color: var(--pico-muted-border-color);
+  --pico-color: var(--pico-color);
+}
+
+/* --------------------- Faixa de arquitetura --------------------- */
+.arch {
+  border-block: 1px solid var(--pico-muted-border-color);
+  padding-block: 1.5rem;
+  margin-bottom: 1rem;
+}
+.arch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.25rem 2rem;
+}
+.arch-item .k {
+  font-family: var(--brand-mono);
+  font-size: 1.15rem;
+  color: var(--pico-color);
+}
+.arch-item .v {
+  font-size: 0.82rem;
+  color: var(--pico-muted-color);
+  margin-top: 0.15rem;
+}
+
+/* ---------------------- Seções genéricas ---------------------- */
+.section { padding-block: clamp(3rem, 7vw, 4.5rem); }
+.section > h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.35rem;
+}
+.section-lead {
+  color: var(--pico-muted-color);
+  max-width: 60ch;
+  margin-bottom: 2.5rem;
+}
+
+/* ----------------------- Grid de projetos ----------------------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.25rem;
+}
+
+.project {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+.project:hover {
+  transform: translateY(-3px);
+  border-color: #33394699;
+}
+
+.project-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.project-top h3 { margin: 0; font-size: 1.2rem; }
+.project-url {
+  font-family: var(--brand-mono);
+  font-size: 0.78rem;
+  color: var(--pico-muted-color);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.project-url:hover { color: var(--pico-primary); }
+
+.project-desc {
+  margin: 0;
+  color: var(--pico-muted-color);
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+/* Motivo da escolha do banco — o elemento âncora do card */
+.why {
+  border-left: 3px solid var(--db-border, var(--pico-muted-border-color));
+  padding: 0.6rem 0 0.6rem 0.85rem;
+  background: linear-gradient(90deg, var(--db-bg, transparent), transparent 85%);
+  border-radius: 0 6px 6px 0;
+}
+.why p { margin: 0.45rem 0 0; font-size: 0.9rem; color: var(--pico-color); }
+
+.badge {
+  display: inline-block;
+  font-family: var(--brand-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 0.16rem 0.55rem;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+.badge + .badge { margin-left: 0.35rem; }
+.badge--pg    { color: var(--db-pg);    background: var(--db-pg-bg);    border-color: var(--db-pg-border); }
+.badge--mongo { color: var(--db-mongo); background: var(--db-mongo-bg); border-color: var(--db-mongo-border); }
+
+.why--pg    { --db-border: var(--db-pg-border);    --db-bg: var(--db-pg-bg); }
+.why--mongo { --db-border: var(--db-mongo-border); --db-bg: var(--db-mongo-bg); }
+.why--both  { --db-border: var(--pico-primary);    --db-bg: rgba(224,164,88,0.10); }
+
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  font-family: var(--brand-mono);
+  font-size: 0.72rem;
+  color: var(--pico-muted-color);
+  border: 1px solid var(--pico-muted-border-color);
+  padding: 0.12rem 0.5rem;
+  border-radius: 5px;
+}
+
+/* Pizzaria: card poliglota em destaque, largura total */
+.project--featured { grid-column: 1 / -1; }
+.project--featured .featured-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+.project--featured .badge { font-size: 0.75rem; }
+
+/* ------------------------------ Sobre ------------------------------ */
+.about p { max-width: 62ch; color: var(--pico-color); }
+
+/* ----------------------------- Footer ----------------------------- */
+.site-footer {
+  border-top: 1px solid var(--pico-muted-border-color);
+  padding-block: 2.5rem;
+  margin-top: 2rem;
+}
+.footer-stack {
+  font-family: var(--brand-mono);
+  font-size: 0.78rem;
+  color: var(--pico-muted-color);
+  margin-bottom: 0.75rem;
+}
+.footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
+.footer-links a { color: var(--pico-color); text-decoration: none; font-size: 0.95rem; }
+.footer-links a:hover { color: var(--pico-primary); }
+.footer-note { font-size: 0.8rem; color: var(--pico-muted-color); margin: 0; }
+
+/* ---------------------------- Responsivo ---------------------------- */
+@media (max-width: 640px) {
+  .project--featured .featured-inner { grid-template-columns: 1fr; }
+  .site-header nav ul:last-child { gap: 0.75rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project { transition: none; }
+  .project:hover { transform: none; }
+}
