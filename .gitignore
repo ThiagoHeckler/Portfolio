@@ -14,3 +14,6 @@ target/
 # Sistema
 .DS_Store
 docker-compose.override.yml
+
+# Logs
+caddy/logs/

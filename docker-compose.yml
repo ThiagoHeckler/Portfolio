@@ -50,6 +50,7 @@ services:
       - ./site:/srv/site:ro          # site principal estático
       - caddy_data:/data             # certificados TLS
       - caddy_config:/config
+      - ./caddy/logs:/var/log/caddy
     networks: [web]
 
   # ----------------------------------------------------------
