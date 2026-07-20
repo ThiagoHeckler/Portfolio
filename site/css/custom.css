@@ -79,6 +79,14 @@ html {
   font-size: 1.05rem;
   color: var(--pico-color);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.wordmark-mark {
+  width: 1.6em;
+  height: 1.6em;
+  display: block;
 }
 .wordmark .accent { color: var(--pico-primary); }
 .site-header nav ul:last-child a {

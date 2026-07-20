@@ -1,0 +1,7 @@
+# robots.txt — thiagoheckler.com.br
+# Portfolio publico: rastreamento liberado para todos os buscadores.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://thiagoheckler.com.br/sitemap.xml
