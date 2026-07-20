@@ -17,7 +17,7 @@
 			roll_keep     10      # mantém no máximo 10 arquivos girados
 			roll_keep_for 2160h   # ~90 dias
 		}
-		format json
+		format console
 	}
 }
 
