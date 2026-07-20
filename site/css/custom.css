@@ -265,7 +265,10 @@ html {
 /* ---------------------------- Responsivo ---------------------------- */
 @media (max-width: 640px) {
   .project--featured .featured-inner { grid-template-columns: 1fr; }
-  .site-header nav ul:last-child { gap: 0.75rem; }
+
+  .site-header nav ul:last-child {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -46,7 +46,7 @@
       <p class="eyebrow">Thiago Heckler · desenvolvedor backend</p>
       <h1>Sete projetos Spring Boot no ar, numa única VPS de 1&nbsp;vCPU.</h1>
       <p class="lead">
-        Cada projeto existe pra demonstrar uma decisão de engenharia — de qual
+        Cada projeto existe pra demonstrar uma decisão de engenharia, de qual
         banco usar a como fazer sete JVMs caberem em 4&nbsp;GB de RAM. O porquê
         de cada escolha está aqui e explicado dentro de cada projeto.
         <!-- TODO: ajustar essa frase pro seu tom -->
@@ -62,7 +62,6 @@
     <section class="arch" id="arquitetura">
       <br>
       <p class="eyebrow">como isto roda</p>
-      <br>
       <div class="arch-grid">
         <div class="arch-item">
           <div class="k">1 vCPU · 4 GB</div>
@@ -85,6 +84,7 @@
           <div class="v">HTTPS automático por subdomínio</div>
         </div>
       </div>
+      <br>
     </section>
 
     <!-- ========================== PROJETOS ========================== -->
@@ -98,26 +98,7 @@
 
       <div class="projects-grid">
 
-        <!-- 1. SisContabil -->
-        <article class="project">
-          <div class="project-top">
-            <h3>SisContabil</h3>
-            <a class="project-url" href="https://siscontabil.thiagoheckler.com.br"
-               target="_blank" rel="noopener">siscontabil.</a>
-          </div>
-          <p class="project-desc">Sistema contábil com lançamentos e relatórios.</p>
-          <div class="why why--pg">
-            <span class="badge badge--pg">PostgreSQL</span>
-            <p>Dados financeiros exigem ACID e integridade referencial forte.</p>
-          </div>
-          <div class="tags">
-            <span class="tag">Spring Boot 4</span>
-            <span class="tag">JPA</span>
-            <span class="tag">Thymeleaf</span>
-          </div>
-        </article>
-
-        <!-- 2. Task API -->
+        <!-- 1. Task API -->
         <article class="project">
           <div class="project-top">
             <h3>Task API</h3>
@@ -127,7 +108,7 @@
           <p class="project-desc">API REST de tarefas, com Swagger UI pra testar ao vivo.</p>
           <div class="why why--pg">
             <span class="badge badge--pg">PostgreSQL</span>
-            <p>CRUD relacional clássico — o caso pra mostrar JPA limpo.</p>
+            <p>CRUD relacional clássico, o caso pra mostrar JPA limpo.</p>
           </div>
           <div class="tags">
             <span class="tag">Spring Boot 4</span>
@@ -135,6 +116,25 @@
             <span class="tag">OpenAPI</span>
           </div>
         </article>
+
+       <!-- 2. Mercado Virtual -->
+       <article class="project">
+        <div class="project-top">
+          <h3>Mercado Virtual</h3>
+          <a class="project-url" href="https://loja.thiagoheckler.com.br"
+             target="_blank" rel="noopener">loja.</a>
+        </div>
+        <p class="project-desc">E-commerce com catálogo de produtos, carrinho e pedidos.</p>
+        <div class="why why--pg">
+          <span class="badge badge--pg">PostgreSQL</span>
+          <p>Carrinho, estoque e pagamento exigem transações atômicas, não se vende o que acabou.</p>
+        </div>
+        <div class="tags">
+          <span class="tag">Spring Boot 4</span>
+          <span class="tag">JPA</span>
+          <span class="tag">Thymeleaf</span>
+        </div>
+       </article>
 
         <!-- 3. Link Shortener -->
         <article class="project">
@@ -222,7 +222,7 @@
               </div>
               <p class="project-desc" style="margin-top:.6rem">
                 O projeto que junta os dois mundos: recebe pedidos e serve um
-                cardápio. Persistência poliglota — cada banco no que faz melhor.
+                cardápio. Persistência poliglota, cada banco no que faz melhor.
               </p>
               <div class="tags" style="margin-top:.85rem">
                 <span class="tag">Spring Boot 4</span>
@@ -254,7 +254,7 @@
       <p>
         Desenvolvedor backend focado em Java e no ecossistema Spring. Gosto de
         problemas onde a decisão certa não é a mais nova, e sim a que cabe na
-        restrição — de orçamento de memória a forma do dado. Este portfólio é
+        restrição, de orçamento de memória a forma do dado. Este portfólio é
         isso na prática: sete sistemas reais, no ar, construídos e explicados
         um a um.
       </p>
