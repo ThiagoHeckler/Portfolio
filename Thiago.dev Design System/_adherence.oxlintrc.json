@@ -1,0 +1,285 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/brand/**",
+              "components/content/**",
+              "components/primitives/**",
+              "ui_kits/portfolio/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ArchStat'] > JSXAttribute > JSXIdentifier[name!=/^(?:stat|label|key|ref|className|style|children)$/]",
+        "message": "<ArchStat> doesn't accept that prop. Declared props: stat, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|db|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: children, db."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='db'] > Literal[value!=/^(?:pg|mongo|accent)$/]",
+        "message": "<Badge> db must be one of 'pg' | 'mongo' | 'accent'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|href|variant|size|disabled|onClick|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, href, variant, size, disabled, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|ghost)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'secondary' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ContactBox'] > JSXAttribute > JSXIdentifier[name!=/^(?:eyebrow|title|lead|actions|key|ref|className|style|children)$/]",
+        "message": "<ContactBox> doesn't accept that prop. Declared props: eyebrow, title, lead, actions."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Eyebrow'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|key|ref|className|style|children)$/]",
+        "message": "<Eyebrow> doesn't accept that prop. Declared props: children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DbBadge'] > JSXAttribute > JSXIdentifier[name!=/^(?:db|label|key|ref|className|style|children)$/]",
+        "message": "<DbBadge> doesn't accept that prop. Declared props: db, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DbBadge'] > JSXAttribute[name.name='db'] > Literal[value!=/^(?:pg|mongo|accent)$/]",
+        "message": "<DbBadge> db must be one of 'pg' | 'mongo' | 'accent'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|key|ref|className|style|children)$/]",
+        "message": "<Tag> doesn't accept that prop. Declared props: children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WhyBlock'] > JSXAttribute > JSXIdentifier[name!=/^(?:db|children|key|ref|className|style|children)$/]",
+        "message": "<WhyBlock> doesn't accept that prop. Declared props: db, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WhyBlock'] > JSXAttribute[name.name='db'] > Literal[value!=/^(?:pg|mongo|both)$/]",
+        "message": "<WhyBlock> db must be one of 'pg' | 'mongo' | 'both'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Wordmark'] > JSXAttribute > JSXIdentifier[name!=/^(?:href|logoSrc|key|ref|className|style|children)$/]",
+        "message": "<Wordmark> doesn't accept that prop. Declared props: href, logoSrc."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "ArchStat": {
+        "replaces": []
+      },
+      "Badge": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "ContactBox": {
+        "replaces": []
+      },
+      "Eyebrow": {
+        "replaces": []
+      },
+      "DbBadge": {
+        "replaces": []
+      },
+      "Tag": {
+        "replaces": []
+      },
+      "WhyBlock": {
+        "replaces": []
+      },
+      "Wordmark": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-focus",
+      "--accent-hover",
+      "--accent-inverse",
+      "--accent-tint",
+      "--accent-underline",
+      "--arch-min",
+      "--bg-page",
+      "--blur-header",
+      "--border",
+      "--border-hover",
+      "--container-max",
+      "--db-mongo",
+      "--db-mongo-bg",
+      "--db-mongo-border",
+      "--db-pg",
+      "--db-pg-bg",
+      "--db-pg-border",
+      "--dur-hover",
+      "--ease",
+      "--font-mono",
+      "--font-sans",
+      "--fs-badge",
+      "--fs-body",
+      "--fs-eyebrow",
+      "--fs-h1",
+      "--fs-h2",
+      "--fs-h3",
+      "--fs-lead",
+      "--fs-small",
+      "--fs-stat",
+      "--fs-tag",
+      "--fs-url",
+      "--fw-medium",
+      "--fw-normal",
+      "--fw-semibold",
+      "--lh-body",
+      "--lh-snug",
+      "--lh-tight",
+      "--lift-hover",
+      "--link",
+      "--link-hover",
+      "--pad-hero",
+      "--pad-section",
+      "--project-min",
+      "--radius-lg",
+      "--radius-md",
+      "--radius-pill",
+      "--radius-sm",
+      "--scroll-offset",
+      "--shadow-avatar",
+      "--space-1",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--surface-card",
+      "--surface-header",
+      "--text-body",
+      "--text-h1",
+      "--text-h3",
+      "--text-muted",
+      "--tracking-badge",
+      "--tracking-h1",
+      "--tracking-h2",
+      "--tracking-mono",
+      "--transition-card",
+      "--wash-featured",
+      "--wash-motive"
+    ],
+    "tokenKinds": {
+      "--bg-page": "color",
+      "--surface-card": "color",
+      "--surface-header": "color",
+      "--border": "color",
+      "--border-hover": "color",
+      "--text-h1": "font",
+      "--text-h3": "font",
+      "--text-body": "font",
+      "--text-muted": "font",
+      "--accent": "color",
+      "--accent-hover": "color",
+      "--accent-inverse": "color",
+      "--accent-underline": "color",
+      "--accent-focus": "color",
+      "--accent-tint": "color",
+      "--db-pg": "color",
+      "--db-pg-bg": "color",
+      "--db-pg-border": "color",
+      "--db-mongo": "color",
+      "--db-mongo-bg": "color",
+      "--db-mongo-border": "color",
+      "--link": "color",
+      "--link-hover": "color",
+      "--font-sans": "font",
+      "--font-mono": "font",
+      "--fs-h1": "font",
+      "--fs-h2": "font",
+      "--fs-h3": "spacing",
+      "--fs-stat": "spacing",
+      "--fs-lead": "spacing",
+      "--fs-body": "spacing",
+      "--fs-small": "spacing",
+      "--fs-eyebrow": "spacing",
+      "--fs-tag": "spacing",
+      "--fs-badge": "spacing",
+      "--fs-url": "spacing",
+      "--lh-tight": "font",
+      "--lh-snug": "font",
+      "--lh-body": "font",
+      "--tracking-h1": "font",
+      "--tracking-h2": "font",
+      "--tracking-mono": "font",
+      "--tracking-badge": "font",
+      "--fw-normal": "font",
+      "--fw-medium": "font",
+      "--fw-semibold": "font",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-lg": "radius",
+      "--radius-pill": "radius",
+      "--container-max": "spacing",
+      "--scroll-offset": "spacing",
+      "--pad-section": "spacing",
+      "--pad-hero": "spacing",
+      "--project-min": "spacing",
+      "--arch-min": "spacing",
+      "--shadow-avatar": "shadow",
+      "--blur-header": "other",
+      "--ease": "other",
+      "--dur-hover": "other",
+      "--lift-hover": "spacing",
+      "--transition-card": "other",
+      "--wash-motive": "other",
+      "--wash-featured": "other"
+    },
+    "fontFamilies": []
+  }
+}

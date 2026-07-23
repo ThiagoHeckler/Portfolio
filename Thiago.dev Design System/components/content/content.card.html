@@ -1,0 +1,24 @@
+<!-- @dsCard group="Components" viewport="700x400" name="Content — ProjectCard / ArchStat / ContactBox" subtitle="Project cards, stats, CTA" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:var(--bg-page);padding:20px;font-family:var(--font-sans)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}.arch{display:flex;gap:32px;padding:14px 0;border-block:1px solid var(--border);margin-bottom:18px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { ProjectCard, ArchStat, ContactBox, Button } = window.ThiagoDevDesignSystem_3d553a;
+function Demo(){return(<div>
+  <div className="arch">
+    <ArchStat stat="1 vCPU · 4 GB" label="VPS única, 2 GB swap" />
+    <ArchStat stat="384 MB / app" label="limite por container" />
+    <ArchStat stat="1 PG + 1 Mongo" label="um DB por projeto" />
+  </div>
+  <div className="grid">
+    <ProjectCard title="Task API" url="#" urlLabel="tasks." description="API REST de tarefas, com Swagger UI pra testar ao vivo." db="pg" dbLabel="PostgreSQL" why="CRUD relacional clássico, JPA limpo." tags={["Spring Boot 4","JPA","OpenAPI"]} />
+    <ProjectCard title="Chat em tempo real" url="#" urlLabel="chat." description="Mensagens ao vivo via WebSocket / STOMP." db="mongo" dbLabel="MongoDB" why="Mensagem é documento; escrita intensa." tags={["Spring Boot 4","WebSocket","STOMP"]} />
+  </div>
+  <ContactBox title="Precisa de uma solução sob medida?" lead="Se algum destes projetos se parece com um problema seu, conversamos e eu te passo um orçamento." actions={<><Button href="#">Falar sobre meu projeto</Button><Button href="#" variant="secondary">LinkedIn</Button></>} />
+</div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

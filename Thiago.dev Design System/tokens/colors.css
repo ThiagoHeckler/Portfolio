@@ -1,0 +1,44 @@
+/* ============================================================
+   colors.css — thiago.dev color system
+   Dark-only by design (the site forces a dark theme regardless
+   of the visitor's OS preference). Amber accent, plus two
+   database-semantic hues: PostgreSQL blue and MongoDB green.
+   ============================================================ */
+:root {
+  /* ---- Base surfaces (dark) ---- */
+  --bg-page: #12151c;        /* page background */
+  --surface-card: #1a1e27;   /* cards, raised panels */
+  --surface-header: rgba(18, 21, 28, 0.82); /* sticky header, blurred */
+
+  /* ---- Borders / dividers ---- */
+  --border: #262b36;         /* default hairline border */
+  --border-hover: #333946;   /* border on hover (card lift) */
+
+  /* ---- Text ---- */
+  --text-h1: #f4f6f8;        /* h1 / h2 */
+  --text-h3: #eceef1;        /* h3 */
+  --text-body: #e8eaed;      /* body copy */
+  --text-muted: #9aa0aa;     /* eyebrows, captions, secondary */
+
+  /* ---- Amber accent (brand) ---- */
+  --accent: #e0a458;
+  --accent-hover: #ecb977;
+  --accent-inverse: #12151c;              /* text/icon on amber fills */
+  --accent-underline: rgba(224, 164, 88, 0.4);
+  --accent-focus: rgba(224, 164, 88, 0.3);
+  --accent-tint: rgba(224, 164, 88, 0.10);/* faint amber wash (featured/contact) */
+
+  /* ---- PostgreSQL semantic (blue) ---- */
+  --db-pg: #7db8e8;
+  --db-pg-bg: rgba(74, 143, 199, 0.12);
+  --db-pg-border: rgba(74, 143, 199, 0.35);
+
+  /* ---- MongoDB semantic (green) ---- */
+  --db-mongo: #6fd89b;
+  --db-mongo-bg: rgba(75, 191, 115, 0.12);
+  --db-mongo-border: rgba(75, 191, 115, 0.35);
+
+  /* ---- Semantic aliases ---- */
+  --link: var(--accent);
+  --link-hover: var(--accent-hover);
+}

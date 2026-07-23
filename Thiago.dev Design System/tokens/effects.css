@@ -1,0 +1,21 @@
+/* ============================================================
+   effects.css — borders, shadows, blur, motion
+   ============================================================ */
+:root {
+  /* ---- Elevation / glow ---- */
+  --shadow-avatar: 0 0 0 2px var(--bg-page), 0 4px 18px rgba(224, 164, 88, 0.25);
+
+  /* ---- Backdrop blur (sticky header) ---- */
+  --blur-header: saturate(140%) blur(10px); /* @kind other */
+
+  /* ---- Motion ---- */
+  --ease: ease; /* @kind other */
+  --dur-hover: 0.18s; /* @kind other */
+  --lift-hover: -3px; /* @kind spacing */
+  --transition-card: transform var(--dur-hover) var(--ease),
+                     border-color var(--dur-hover) var(--ease); /* @kind other */
+
+  /* ---- Accent washes (directional tints) ---- */
+  --wash-motive: linear-gradient(90deg, var(--db-bg, transparent), transparent 85%); /* @kind other */
+  --wash-featured: linear-gradient(135deg, rgba(224, 164, 88, 0.08), transparent 70%); /* @kind other */
+}

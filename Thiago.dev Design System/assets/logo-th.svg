@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="TH">
+  <circle cx="50" cy="50" r="50" fill="#e0a458"></circle>
+  <g transform="translate(21.60,65.20) scale(0.04164,-0.04164)" fill="#141414">
+    <path transform="translate(0.0,0)" d="M220 0V588H406V0ZM20 568V730H606V568Z"></path>
+    <path transform="translate(566.0,0)" d="M538 0V730H724V0ZM74 0V730H260V0ZM228 287V449H570V287Z"></path>
+  </g>
+</svg>

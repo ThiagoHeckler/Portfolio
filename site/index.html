@@ -1,68 +1,92 @@
 <!doctype html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thiago Heckler — Desenvolvedor Backend Java</title>
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <title>Thiago Heckler · Desenvolvedor Backend Java</title>
   <meta name="description"
         content="Portfólio de backend em Java 25 e Spring Boot 4: sete projetos no ar numa única VPS, cada decisão de arquitetura explicada.">
 
-  <!-- Pico self-hospedado (sem CDN). Baixado em site/css/. -->
-  <link rel="stylesheet" href="/css/pico.min.css">
   <link rel="stylesheet" href="/css/custom.css">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png"> 
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 
-<body>
+<body id="top">
 
   <!-- ============================ HEADER ============================ -->
   <header class="site-header">
     <nav class="container">
-      <ul>
-        <li>
-          <a class="wordmark" href="/" aria-label="Thiago Heckler - início">
-            <img src="/favicon.svg" alt="" class="wordmark-mark" width="28" height="28">
-            <span>thiago<span class="accent">.dev</span></span>
-          </a>
-        </li>
-      </ul>
-      <ul>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#arquitetura">Arquitetura</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#contato">Contato</a></li>
-        <!-- TODO: confirmar handle do GitHub -->
-        <li><a href="https://github.com/ThiagoHeckler" target="_blank" rel="noopener">GitHub</a></li>
-      </ul>
+      <a class="wordmark" href="#top" aria-label="Thiago Heckler - início">
+        <img src="/favicon.svg" alt="" class="wordmark-mark" width="38" height="38">
+        <span>thiago<span class="accent">.dev</span></span>
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#arquitetura">Onde roda</a></li>
+          <li><a href="#stacks">Stacks</a></li>
+          <li><a href="#gancho">Serviço</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro/escuro">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+          </svg>
+        </button>
+      </div>
     </nav>
   </header>
 
   <main class="container">
 
-    <!-- ============================= HERO ============================= -->
-    <section class="hero">
-      <p class="eyebrow">Thiago Heckler · desenvolvedor backend</p>
-      <h1>Sete projetos Spring Boot no ar, numa única VPS de 1&nbsp;vCPU.</h1>
-      <p class="lead">
-        Cada projeto existe pra demonstrar uma decisão de engenharia, de qual
-        banco usar a como fazer sete JVMs caberem em 4&nbsp;GB de RAM. O porquê
-        de cada escolha está aqui e explicado dentro de cada projeto.
-        <!-- TODO: ajustar essa frase pro seu tom -->
-      </p>
-      <div class="hero-actions">
-        <a href="#projetos" role="button">Ver projetos</a>
-        <a href="https://github.com/ThiagoHeckler" role="button" class="secondary"
-           target="_blank" rel="noopener">GitHub</a>
+    <!-- ========================= APRESENTAÇÃO ========================= -->
+    <section class="apresentacao" id="apresentacao">
+      <p class="eyebrow">apresentação</p>
+      <div class="apresentacao-grid">
+        <div>
+          <h1>Thiago Heckler.</h1>
+          <p class="lead">
+            Sou desenvolvedor backend focado em Java e no ecossistema Spring. Gosto
+            de problemas onde a decisão certa não é a mais nova, e sim a que cabe
+            na restrição, de orçamento de memória à forma do dado. Este portfólio
+            é isso na prática: sistemas reais, no ar, construídos e explicados
+            um a um.
+          </p>
+          <div class="actions">
+            <a href="#projetos" class="btn btn--primary">Ver projetos</a>
+            <a href="https://github.com/ThiagoHeckler" class="btn btn--secondary"
+               target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <img src="/img/profileGPT.png" alt="Thiago Heckler" width="240" height="240"
+             class="apresentacao-photo" loading="lazy">
       </div>
     </section>
 
     <!-- ======================== ARQUITETURA ========================= -->
-    <section class="arch" id="arquitetura">
-      <br>
-      <p class="eyebrow">como isto roda</p>
+    <section class="section" id="arquitetura">
+      <p class="eyebrow">onde isso roda · vps</p>
+      <h2>Tudo numa VPS de 1 vCPU e 4 GB</h2>
+      <p class="section-lead">
+        Sete JVMs, um PostgreSQL e um MongoDB, orquestrados por um único Docker
+        Compose atrás do Caddy. Fazer isso caber é parte do projeto, não um detalhe.
+      </p>
       <div class="arch-grid">
         <div class="arch-item">
           <div class="k">1 vCPU · 4 GB</div>
@@ -85,7 +109,6 @@
           <div class="v">HTTPS automático por subdomínio</div>
         </div>
       </div>
-      <br>
     </section>
 
     <!-- ========================== PROJETOS ========================== -->
@@ -247,49 +270,102 @@
       </div>
     </section>
 
-    <!-- ============================ SOBRE ============================ -->
-    <section class="section about" id="sobre">
-      <p class="eyebrow">sobre</p>
-      <h2>Quem constrói isto</h2>
-      <div class="about-grid">
-        <img src="/img/profileGPT.png" alt="Foto de Thiago Heckler" class="about-photo"
-             width="220" height="220" loading="lazy">
-        <div class="about-text">
-          <!-- TODO: sua bio real. Rascunho abaixo pra você reescrever. -->
-          <p>
-            Desenvolvedor backend focado em Java e no ecossistema Spring. Gosto de
-            problemas onde a decisão certa não é a mais nova, e sim a que cabe na
-            restrição, de orçamento de memória a forma do dado. Este portfólio é
-            isso na prática: sete sistemas reais, no ar, construídos e explicados
-            um a um.
-          </p>
-          <p>
-            <!-- TODO: trocar por links reais -->
-            <a href="https://github.com/ThiagoHeckler" target="_blank" rel="noopener">GitHub</a> ·
-            <a href="https://www.linkedin.com/in/thiago-heckler/" target="_blank" rel="noopener">LinkedIn</a> ·
-            <a href="mailto:thiagoecheckler@gmail.com">thiagoecheckler@gmail.com</a>
-          </p>
+    <!-- ============================ STACKS ============================ -->
+    <section class="section" id="stacks">
+      <p class="eyebrow">stacks que uso</p>
+      <h2>A stack, fixa e por um motivo</h2>
+      <p class="section-lead">
+        Java e o ecossistema Spring do backend ao deploy. Nada aqui é moda: cada
+        peça foi dimensionada pra rodar barato e previsível numa VPS pequena.
+      </p>
+      <div class="stacks-grid">
+        <div class="stack-card">
+          <div class="stack-group">// linguagem &amp; framework</div>
+          <div class="tags">
+            <span class="tag">Java 25 LTS</span>
+            <span class="tag">Spring Boot 4</span>
+            <span class="tag">Spring Framework 7</span>
+            <span class="tag">Jakarta EE 11</span>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="stack-group">// persistência</div>
+          <div class="tags">
+            <span class="tag">Spring Data JPA</span>
+            <span class="tag">Hibernate ORM 7</span>
+            <span class="tag">Spring Data MongoDB</span>
+            <span class="tag">Flyway</span>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="stack-group">// bancos</div>
+          <div class="tags">
+            <span class="tag">PostgreSQL 17</span>
+            <span class="tag">MongoDB 8.0</span>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="stack-group">// infra &amp; deploy</div>
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">Docker Compose</span>
+            <span class="tag">Caddy</span>
+            <span class="tag">VPS Hostinger</span>
+          </div>
+        </div>
+        <div class="stack-card">
+          <div class="stack-group">// testes</div>
+          <div class="tags">
+            <span class="tag">JUnit 5</span>
+            <span class="tag">Mockito</span>
+            <span class="tag">Testcontainers</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ GANCHO ============================ -->
+    <section class="section" id="gancho">
+      <div class="contact-box">
+        <p class="eyebrow">quer um serviço meu?</p>
+        <h2>Precisa de uma solução sob medida?</h2>
+        <p class="section-lead">
+          Se algum destes projetos se parece com um problema que você tem ou precisa de uma solução para o seu negócio, eu
+          construo do mesmo jeito: uma decisão de engenharia de cada vez,
+          rodando barato e sem sustos. API, painel, integração ou o sistema inteiro.
+        </p>
+        <div class="actions">
+          <a href="#contato" class="btn btn--primary">Quero um orçamento</a>
+          <a href="https://github.com/ThiagoHeckler" class="btn btn--secondary"
+             target="_blank" rel="noopener">Ver o código</a>
         </div>
       </div>
     </section>
 
     <!-- ============================ CONTATO ============================ -->
-    <section class="section contact" id="contato">
-      <div class="contact-box">
-        <p class="eyebrow">contato</p>
-        <h2>Precisa de uma solução sob medida?</h2>
-        <p class="section-lead">
-          Se algum destes projetos se parece com um problema que você tem, ou
-          se você precisa de um sistema que resolve problemas, entre em
-          contato. Conversamos sobre o que você precisa e eu te passo um
-          orçamento.
-        </p>
-        <div class="hero-actions">
-          <a href="mailto:thiagoecheckler@gmail.com" role="button">Falar sobre meu projeto</a>
-          <a href="https://www.linkedin.com/in/thiago-heckler/" role="button" class="secondary"
-             target="_blank" rel="noopener">LinkedIn</a>
-        </div>
+    <section class="section" id="contato">
+      <p class="eyebrow">contato para trabalho</p>
+      <h2>Tem interesse para trabalhar na sua empresa?</h2>
+      <p class="section-lead">
+        Entre em contato comigo para discutir oportunidades de trabalho.
+      </p>
+      <div class="contact-links">
+        <a class="contact-card" href="mailto:thiagoecheckler@gmail.com">
+          <div class="k">// e-mail</div>
+          <div class="v">thiagoecheckler@gmail.com</div>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/thiago-heckler"
+           target="_blank" rel="noopener">
+          <div class="k">// linkedin</div>
+          <div class="v">in/thiago-heckler</div>
+        </a>
+        <a class="contact-card" href="https://github.com/ThiagoHeckler"
+           target="_blank" rel="noopener">
+          <div class="k">// github</div>
+          <div class="v">github.com/ThiagoHeckler</div>
+        </a>
       </div>
+      <a href="mailto:thiagoecheckler@gmail.com" class="btn btn--primary">Enviar email</a>
     </section>
 
   </main>
@@ -306,10 +382,19 @@
         <a href="mailto:thiagoecheckler@gmail.com">Email</a>
       </div>
       <p class="footer-note">
-        Site estático, servido direto pelo Caddy. Feito com Pico.css.
+        Site estático, servido direto pelo Caddy.
       </p>
     </div>
   </footer>
+
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var html = document.documentElement;
+      var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  </script>
 
 </body>
 </html>
