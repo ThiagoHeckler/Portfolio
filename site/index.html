@@ -3,18 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1626">
   <script>
     (function () {
-      var stored = localStorage.getItem('theme');
+      var d = document.documentElement, stored = null;
+      d.classList.add('js');
+      try { stored = localStorage.getItem('theme'); } catch (e) {}
       var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-      document.documentElement.setAttribute('data-theme', theme);
+      d.setAttribute('data-theme', theme);
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'light' ? '#eef2f7' : '#0d1626');
     })();
   </script>
   <title>Thiago Heckler · Desenvolvedor Backend Java</title>
   <meta name="description"
-        content="Portfólio de backend em Java 25 e Spring Boot 4: sete projetos no ar numa única VPS, cada decisão de arquitetura explicada.">
+        content="Portfólio de Thiago Heckler: sete sistemas em Java 25 e Spring Boot 4 no ar para você testar, cada um no seu subdomínio.">
 
-  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/custom.css?v=20261007">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
@@ -23,378 +28,308 @@
 
 <body id="top">
 
-  <!-- ============================ HEADER ============================ -->
+  <a class="skip" href="#projetos">Pular para os projetos</a>
+
   <header class="site-header">
-    <nav class="container">
-      <a class="wordmark" href="#top" aria-label="Thiago Heckler - início">
-        <img src="/favicon.svg" alt="" class="wordmark-mark" width="38" height="38">
-        <span>thiago<span class="accent">.dev</span></span>
-      </a>
-      <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#projetos">Projetos</a></li>
-          <li><a href="#arquitetura">Onde roda</a></li>
-          <li><a href="#stacks">Stacks</a></li>
-          <li><a href="#gancho">Serviço</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema claro/escuro">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-          </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
-          </svg>
-        </button>
-      </div>
+    <nav class="wrap nav">
+      <a class="name" href="#top">Thiago Heckler</a>
+      <ul class="nav-links">
+        <li><a href="#projetos">Projetos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Tema escuro" aria-pressed="true">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path>
+        </svg>
+      </button>
     </nav>
   </header>
 
-  <main class="container">
+  <main>
 
-    <!-- ========================= APRESENTAÇÃO ========================= -->
-    <section class="apresentacao" id="apresentacao">
-      <p class="eyebrow">apresentação</p>
-      <div class="apresentacao-grid">
-        <div>
-          <h1>Thiago Heckler.</h1>
-          <p class="lead">
-            Sou desenvolvedor backend focado em Java e no ecossistema Spring. Gosto
-            de problemas onde a decisão certa não é a mais nova, e sim a que cabe
-            na restrição, de orçamento de memória à forma do dado. Este portfólio
-            é isso na prática: sistemas reais, no ar, construídos e explicados
-            um a um.
-          </p>
-          <div class="actions">
-            <a href="#projetos" class="btn btn--primary">Ver projetos</a>
-            <a href="https://github.com/ThiagoHeckler" class="btn btn--secondary"
-               target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </div>
-        <img src="/img/profileGPT.png" alt="Thiago Heckler" width="240" height="240"
-             class="apresentacao-photo" loading="lazy">
+    <!-- ============================ HERO ============================ -->
+    <section class="hero wrap">
+      <h1 class="load" style="--o:1">Sistemas backend em Java, no ar para você&nbsp;testar.</h1>
+      <p class="hero-lead load" style="--o:2">
+        Sou Thiago Heckler, desenvolvedor backend. Estes são sete projetos com
+        Spring Boot 4, PostgreSQL e MongoDB, cada um rodando no seu próprio
+        endereço. Escolha um, veja o que ele faz e abra o site.
+      </p>
+      <div class="actions load" style="--o:3">
+        <a href="#projetos" class="btn btn--primary">Ver os projetos</a>
+        <a href="#contato" class="btn btn--outline">Entrar em contato agora</a>
+        <a href="https://github.com/ThiagoHeckler" class="btn btn--ghost" target="_blank" rel="noopener">GitHub</a>
       </div>
     </section>
 
-    <!-- ======================== ARQUITETURA ========================= -->
-    <section class="section" id="arquitetura">
-      <p class="eyebrow">onde isso roda · vps</p>
-      <h2>Tudo numa VPS de 1 vCPU e 4 GB</h2>
-      <p class="section-lead">
-        Sete JVMs, um PostgreSQL e um MongoDB, orquestrados por um único Docker
-        Compose atrás do Caddy. Fazer isso caber é parte do projeto, não um detalhe.
-      </p>
-      <div class="arch-grid">
-        <div class="arch-item">
-          <div class="k">1 vCPU · 4 GB</div>
-          <div class="v">VPS única, com 2 GB de swap</div>
-        </div>
-        <div class="arch-item">
-          <div class="k">Docker Compose</div>
-          <div class="v">tudo orquestrado num arquivo</div>
-        </div>
-        <div class="arch-item">
-          <div class="k">1 PG + 1 Mongo</div>
-          <div class="v">uma instância de cada, um DB por projeto</div>
-        </div>
-        <div class="arch-item">
-          <div class="k">384 MB / app</div>
-          <div class="v">limite de RAM por container</div>
-        </div>
-        <div class="arch-item">
-          <div class="k">Caddy</div>
-          <div class="v">HTTPS automático por subdomínio</div>
-        </div>
-      </div>
-    </section>
+    <!-- ========================== PROJETOS ==========================
+         Desktop: a seção é alta e o palco fica fixo; a rolagem escolhe o projeto.
+         Mobile: abas horizontais, toque para trocar. -->
+    <section class="projects" id="projetos" aria-labelledby="projetos-title">
+      <div class="proj-track">
+        <div class="stage wrap" data-db="pg">
 
-    <!-- ========================== PROJETOS ========================== -->
-    <section class="section" id="projetos">
-      <p class="eyebrow">projetos</p>
-      <h2>Sete projetos, sete decisões de banco</h2>
-      <p class="section-lead">
-        A escolha do banco vem da forma do dado, não da moda. Postgres quando a
-        consistência manda; Mongo quando o dado é documento. Cada card diz o porquê.
-      </p>
+          <div class="stage-side">
+            <div class="stage-head">
+              <h2 id="projetos-title">Projetos</h2>
+              <p class="counter"><span class="counter-now">1</span> de 7</p>
+            </div>
 
-      <div class="projects-grid">
+            <div class="tabs" role="tablist" aria-label="Projetos" aria-orientation="vertical">
+              <span class="tab-indicator" aria-hidden="true"></span>
+              <button class="tab" role="tab" id="t-tasks" aria-controls="i-tasks" aria-selected="true" data-sub="tasks" data-db="pg">
+                <span class="tab-name">Task API</span><span class="tab-sub" translate="no">tasks.</span>
+              </button>
+              <button class="tab" role="tab" id="t-loja" aria-controls="i-loja" aria-selected="false" tabindex="-1" data-sub="loja" data-db="pg">
+                <span class="tab-name">Mercado Virtual</span><span class="tab-sub" translate="no">loja.</span>
+              </button>
+              <button class="tab" role="tab" id="t-estoque" aria-controls="i-estoque" aria-selected="false" tabindex="-1" data-sub="estoque" data-db="pg">
+                <span class="tab-name">Estoque Dashboard</span><span class="tab-sub" translate="no">estoque.</span>
+              </button>
+              <button class="tab" role="tab" id="t-auth" aria-controls="i-auth" aria-selected="false" tabindex="-1" data-sub="auth" data-db="pg">
+                <span class="tab-name">Auth Service</span><span class="tab-sub" translate="no">auth.</span>
+              </button>
+              <button class="tab" role="tab" id="t-links" aria-controls="i-links" aria-selected="false" tabindex="-1" data-sub="links" data-db="mongo">
+                <span class="tab-name">Link Shortener</span><span class="tab-sub" translate="no">links.</span>
+              </button>
+              <button class="tab" role="tab" id="t-chat" aria-controls="i-chat" aria-selected="false" tabindex="-1" data-sub="chat" data-db="mongo">
+                <span class="tab-name">Chat em tempo real</span><span class="tab-sub" translate="no">chat.</span>
+              </button>
+              <button class="tab" role="tab" id="t-pizzaria" aria-controls="i-pizzaria" aria-selected="false" tabindex="-1" data-sub="pizzaria" data-db="both">
+                <span class="tab-name">Pizzaria Bollo</span><span class="tab-sub" translate="no">pizzaria.</span>
+              </button>
+            </div>
 
-        <!-- 1. Task API -->
-        <article class="project">
-          <div class="project-top">
-            <h3>Task API</h3>
-            <a class="project-url" href="https://tasks.thiagoheckler.com.br"
-               target="_blank" rel="noopener">tasks.</a>
+            <div class="rail" aria-hidden="true"><span class="rail-fill"></span></div>
           </div>
-          <p class="project-desc">API REST de tarefas, com Swagger UI pra testar ao vivo.</p>
-          <div class="why why--pg">
-            <span class="badge badge--pg">PostgreSQL</span>
-            <p>CRUD relacional clássico, o caso pra mostrar JPA limpo.</p>
-          </div>
-          <div class="tags">
-            <span class="tag">Spring Boot 4</span>
-            <span class="tag">JPA</span>
-            <span class="tag">OpenAPI</span>
-          </div>
-        </article>
 
-       <!-- 2. Mercado Virtual -->
-       <article class="project">
-        <div class="project-top">
-          <h3>Mercado Virtual</h3>
-          <a class="project-url" href="https://loja.thiagoheckler.com.br"
-             target="_blank" rel="noopener">loja.</a>
-        </div>
-        <p class="project-desc">E-commerce com catálogo de produtos, carrinho e pedidos.</p>
-        <div class="why why--pg">
-          <span class="badge badge--pg">PostgreSQL</span>
-          <p>Carrinho, estoque e pagamento exigem transações atômicas, não se vende o que acabou.</p>
-        </div>
-        <div class="tags">
-          <span class="tag">Spring Boot 4</span>
-          <span class="tag">JPA</span>
-          <span class="tag">Thymeleaf</span>
-        </div>
-       </article>
+          <div class="stage-main">
 
-        <!-- 3. Link Shortener -->
-        <article class="project">
-          <div class="project-top">
-            <h3>Link Shortener</h3>
-            <a class="project-url" href="https://links.thiagoheckler.com.br"
-               target="_blank" rel="noopener">links.</a>
-          </div>
-          <p class="project-desc">Encurtador de URLs com analytics de cliques.</p>
-          <div class="why why--mongo">
-            <span class="badge badge--mongo">MongoDB</span>
-            <p>Documentos simples, leitura intensa e contadores de clique.</p>
-          </div>
-          <div class="tags">
-            <span class="tag">Spring Boot 4</span>
-            <span class="tag">Spring Data Mongo</span>
-          </div>
-        </article>
-
-        <!-- 4. Estoque Dashboard -->
-        <article class="project">
-          <div class="project-top">
-            <h3>Estoque Dashboard</h3>
-            <a class="project-url" href="https://estoque.thiagoheckler.com.br"
-               target="_blank" rel="noopener">estoque.</a>
-          </div>
-          <p class="project-desc">Painel de estoque com relatórios e gráficos.</p>
-          <div class="why why--pg">
-            <span class="badge badge--pg">PostgreSQL</span>
-            <p>Relatórios pedem agregações SQL e joins entre tabelas.</p>
-          </div>
-          <div class="tags">
-            <span class="tag">Spring Boot 4</span>
-            <span class="tag">JPA</span>
-            <span class="tag">Thymeleaf</span>
-          </div>
-        </article>
-
-        <!-- 5. Chat em tempo real -->
-        <article class="project">
-          <div class="project-top">
-            <h3>Chat em tempo real</h3>
-            <a class="project-url" href="https://chat.thiagoheckler.com.br"
-               target="_blank" rel="noopener">chat.</a>
-          </div>
-          <p class="project-desc">Mensagens ao vivo via WebSocket / STOMP.</p>
-          <div class="why why--mongo">
-            <span class="badge badge--mongo">MongoDB</span>
-            <p>Mensagem é documento; escrita intensa e schema flexível.</p>
-          </div>
-          <div class="tags">
-            <span class="tag">Spring Boot 4</span>
-            <span class="tag">WebSocket</span>
-            <span class="tag">STOMP</span>
-          </div>
-        </article>
-
-        <!-- 6. Auth Service -->
-        <article class="project">
-          <div class="project-top">
-            <h3>Auth Service</h3>
-            <a class="project-url" href="https://auth.thiagoheckler.com.br"
-               target="_blank" rel="noopener">auth.</a>
-          </div>
-          <p class="project-desc">Autenticação e autorização com JWT.</p>
-          <div class="why why--pg">
-            <span class="badge badge--pg">PostgreSQL</span>
-            <p>Usuários, roles e tokens exigem consistência forte.</p>
-          </div>
-          <div class="tags">
-            <span class="tag">Spring Boot 4</span>
-            <span class="tag">Spring Security</span>
-            <span class="tag">JWT</span>
-          </div>
-        </article>
-
-        <!-- 7. Pizzaria Bollo — poliglota, em destaque -->
-        <article class="project project--featured">
-          <div class="featured-inner">
-            <div>
-              <div class="project-top">
-                <h3>Pizzaria Bollo</h3>
-                <a class="project-url" href="https://pizzaria.thiagoheckler.com.br"
-                   target="_blank" rel="noopener">pizzaria.</a>
+            <!-- Janela do navegador: as telas são ilustrações -->
+            <div class="win" aria-hidden="true">
+              <div class="win-bar">
+                <span class="win-dots"><i></i><i></i><i></i></span>
+                <span class="win-url" translate="no">https://<span class="url-sub">tasks</span>.thiagoheckler.com.br</span>
               </div>
-              <p class="project-desc" style="margin-top:.6rem">
-                O projeto que junta os dois mundos: recebe pedidos e serve um
-                cardápio. Persistência poliglota, cada banco no que faz melhor.
-              </p>
-              <div class="tags" style="margin-top:.85rem">
-                <span class="tag">Spring Boot 4</span>
-                <span class="tag">JPA</span>
-                <span class="tag">Spring Data Mongo</span>
-                <span class="tag">Thymeleaf</span>
+              <div class="win-view">
+
+                <!-- Task API: Swagger -->
+                <div class="mock mock--tasks is-active" data-for="tasks">
+                  <div class="m-swagger">
+                    <p class="m-title" data-s>Task API <span class="m-chip">OpenAPI 3.1</span></p>
+                    <div class="m-ep" data-s><b class="get">GET</b><code>/api/tasks</code><span>Lista as tarefas</span></div>
+                    <div class="m-ep" data-s><b class="post">POST</b><code>/api/tasks</code><span>Cria uma tarefa</span></div>
+                    <div class="m-ep" data-s><b class="put">PUT</b><code>/api/tasks/{id}</code><span>Atualiza</span></div>
+                    <div class="m-ep" data-s><b class="del">DELETE</b><code>/api/tasks/{id}</code><span>Remove</span></div>
+                    <pre class="m-json" data-s>{ "id": 42, "titulo": "Revisar PR", "status": "EM_ANDAMENTO" }</pre>
+                  </div>
+                </div>
+
+                <!-- Mercado Virtual: loja -->
+                <div class="mock mock--loja" data-for="loja">
+                  <div class="m-shop-top" data-s><span>Mercado Virtual</span><span class="m-cart">Carrinho (2)</span></div>
+                  <div class="m-products">
+                    <div class="m-prod" data-s><i></i><span>Café em grãos 1 kg</span><b>R$ 54,90</b></div>
+                    <div class="m-prod" data-s><i></i><span>Azeite extra virgem</span><b>R$ 39,90</b></div>
+                    <div class="m-prod m-prod--out" data-s><i></i><span>Queijo canastra</span><b>Esgotado</b></div>
+                    <div class="m-prod" data-s><i></i><span>Granola artesanal</span><b>R$ 22,50</b></div>
+                    <div class="m-prod" data-s><i></i><span>Mel silvestre</span><b>R$ 31,00</b></div>
+                    <div class="m-prod" data-s><i></i><span>Pão de fermentação natural</span><b>R$ 18,00</b></div>
+                  </div>
+                </div>
+
+                <!-- Estoque: painel -->
+                <div class="mock mock--estoque" data-for="estoque">
+                  <div class="m-kpis">
+                    <div data-s><span>Itens em estoque</span><b>1.284</b></div>
+                    <div data-s><span>Abaixo do mínimo</span><b class="warn">23</b></div>
+                    <div data-s><span>Movimentações hoje</span><b>96</b></div>
+                  </div>
+                  <div class="m-chart" data-s>
+                    <span style="--h:.42" data-m="mai"></span><span style="--h:.58" data-m="jun"></span><span style="--h:.51" data-m="jul"></span>
+                    <span style="--h:.74" data-m="ago"></span><span style="--h:.66" data-m="set"></span><span style="--h:.88" data-m="out"></span>
+                  </div>
+                </div>
+
+                <!-- Auth: JWT -->
+                <div class="mock mock--auth" data-for="auth">
+                  <div class="m-login" data-s>
+                    <span class="m-field">thiago@exemplo.com</span>
+                    <span class="m-field">••••••••••</span>
+                    <span class="m-btn">Entrar</span>
+                  </div>
+                  <p class="m-token" data-s><span class="h">eyJhbGciOiJIUzI1NiJ9</span>.<span class="p">eyJzdWIiOiJ0aGlhZ28iLCJyb2xlcyI6WyJBRE1JTiJdfQ</span>.<span class="s">Qm9sbG8tc2lnbmF0dXJl</span></p>
+                  <pre class="m-json" data-s>{ "sub": "thiago", "roles": ["ADMIN"], "exp": 1767225600 }</pre>
+                </div>
+
+                <!-- Links: encurtador -->
+                <div class="mock mock--links" data-for="links">
+                  <div class="m-shorten" data-s>
+                    <span class="m-field m-field--long">https://exemplo.com.br/blog/2026/como-escolher-um-banco-de-dados</span>
+                    <span class="m-btn">Encurtar</span>
+                  </div>
+                  <p class="m-short" data-s translate="no">links.thiagoheckler.com.br/<b>x7Kp2</b></p>
+                  <div class="m-clicks" data-s>
+                    <p><b>1.932</b> cliques nos últimos 14 dias</p>
+                    <div class="m-spark">
+                      <i style="--h:.3"></i><i style="--h:.45"></i><i style="--h:.38"></i><i style="--h:.6"></i><i style="--h:.52"></i><i style="--h:.7"></i><i style="--h:.4"></i>
+                      <i style="--h:.55"></i><i style="--h:.82"></i><i style="--h:.64"></i><i style="--h:.9"></i><i style="--h:.72"></i><i style="--h:.58"></i><i style="--h:1"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Chat -->
+                <div class="mock mock--chat" data-for="chat">
+                  <p class="m-room" data-s># geral <span>3 online</span></p>
+                  <div class="m-msg" data-s><b>Ana</b><p>Alguém já testou o deploy novo?</p></div>
+                  <div class="m-msg m-msg--me" data-s><b>Você</b><p>Testei agora, subiu em 40 segundos.</p></div>
+                  <div class="m-msg" data-s><b>Rafael</b><p>Boa. Vou abrir o PR do relatório.</p></div>
+                  <p class="m-typing" data-s>Ana está digitando<span>.</span><span>.</span><span>.</span></p>
+                </div>
+
+                <!-- Pizzaria -->
+                <div class="mock mock--pizzaria" data-for="pizzaria">
+                  <div class="m-menu">
+                    <p class="m-col-title" data-s>Cardápio <span class="db-dot db-dot--mongo"></span></p>
+                    <div class="m-item" data-s><b>Margherita</b><span>Molho, mussarela, manjericão</span><em>P, M, G</em></div>
+                    <div class="m-item" data-s><b>Calabresa</b><span>Calabresa, cebola roxa, orégano</span><em>P, M, G</em></div>
+                    <div class="m-item" data-s><b>Quatro queijos</b><span>Mussarela, gorgonzola, parmesão, catupiry</span><em>M, G</em></div>
+                  </div>
+                  <div class="m-order" data-s>
+                    <p class="m-col-title">Pedido #1042 <span class="db-dot db-dot--pg"></span></p>
+                    <p>1× Margherita G</p>
+                    <p>1× Calabresa M</p>
+                    <p class="m-total">Total R$ 112,00</p>
+                    <span class="m-status">Confirmado</span>
+                  </div>
+                </div>
+
               </div>
             </div>
-            <div class="why why--both">
-              <span class="badge badge--pg">PostgreSQL</span>
-              <span class="badge badge--mongo">MongoDB</span>
-              <p>
-                Pedidos vão pro Postgres, onde a transação garante que nada se
-                perde. O cardápio vive no Mongo, com documentos aninhados
-                (ingredientes, tamanhos, variações) sem virar dez tabelas.
-              </p>
+
+            <!-- Informações do projeto selecionado (conteúdo acessível) -->
+            <div class="infos">
+              <div class="info is-active" role="tabpanel" id="i-tasks" aria-labelledby="t-tasks">
+                <div class="info-text">
+                  <h3>Task API</h3>
+                  <p>API REST de tarefas, com Swagger UI para testar cada endpoint no navegador.</p>
+                  <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: CRUD relacional clássico, o caso para mostrar JPA limpo.</p>
+                  <p class="info-stack">Spring Boot 4, Spring Data JPA, springdoc-openapi</p>
+                </div>
+                <a class="btn btn--primary" href="https://tasks.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Task API</a>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-loja" aria-labelledby="t-loja" hidden>
+                <div class="info-text">
+                  <h3>Mercado Virtual</h3>
+                  <p>E-commerce com catálogo de produtos, carrinho e pedidos.</p>
+                  <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: carrinho, estoque e pagamento em transações atômicas. Não se vende o que acabou.</p>
+                  <p class="info-stack">Spring Boot 4, Spring Data JPA, Thymeleaf</p>
+                </div>
+                <a class="btn btn--primary" href="https://loja.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Mercado Virtual</a>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-estoque" aria-labelledby="t-estoque" hidden>
+                <div class="info-text">
+                  <h3>Estoque Dashboard</h3>
+                  <p>Painel de estoque com relatórios, alertas de mínimo e gráficos.</p>
+                  <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: relatórios pedem agregações SQL e joins entre tabelas.</p>
+                  <p class="info-stack">Spring Boot 4, Spring Data JPA, Thymeleaf</p>
+                </div>
+                <a class="btn btn--primary" href="https://estoque.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Estoque Dashboard</a>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-auth" aria-labelledby="t-auth" hidden>
+                <div class="info-text">
+                  <h3>Auth Service</h3>
+                  <p>Cadastro, login e autorização por papéis, com tokens JWT.</p>
+                  <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: usuários, papéis e tokens exigem consistência forte.</p>
+                  <p class="info-stack">Spring Boot 4, Spring Security, JWT</p>
+                </div>
+                <a class="btn btn--primary" href="https://auth.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Auth Service</a>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-links" aria-labelledby="t-links" hidden>
+                <div class="info-text">
+                  <h3>Link Shortener</h3>
+                  <p>Encurtador de URLs com contagem de cliques por dia.</p>
+                  <p class="info-db"><span class="db-dot db-dot--mongo"></span>MongoDB: documentos simples, leitura intensa e contadores de clique.</p>
+                  <p class="info-stack">Spring Boot 4, Spring Data MongoDB</p>
+                </div>
+                <a class="btn btn--primary" href="https://links.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Link Shortener</a>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-chat" aria-labelledby="t-chat" hidden>
+                <div class="info-text">
+                  <h3>Chat em tempo real</h3>
+                  <p>Salas de conversa com mensagens ao vivo via WebSocket e STOMP.</p>
+                  <p class="info-db"><span class="db-dot db-dot--mongo"></span>MongoDB: cada mensagem é um documento; escrita intensa e schema flexível.</p>
+                  <p class="info-stack">Spring Boot 4, WebSocket, STOMP</p>
+                </div>
+                <a class="btn btn--primary" href="https://chat.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir o chat</a>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-pizzaria" aria-labelledby="t-pizzaria" hidden>
+                <div class="info-text">
+                  <h3>Pizzaria Bollo</h3>
+                  <p>Cardápio online e pedidos, usando os dois bancos na mesma aplicação.</p>
+                  <p class="info-db"><span class="db-dot db-dot--pg"></span>Pedidos no PostgreSQL, onde a transação garante que nada se perde.</p>
+                  <p class="info-db"><span class="db-dot db-dot--mongo"></span>Cardápio no MongoDB, com tamanhos e ingredientes aninhados num documento.</p>
+                  <p class="info-stack">Spring Boot 4, Spring Data JPA, Spring Data MongoDB, Thymeleaf</p>
+                </div>
+                <a class="btn btn--primary" href="https://pizzaria.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Pizzaria Bollo</a>
+              </div>
             </div>
-          </div>
-        </article>
 
-      </div>
-    </section>
-
-    <!-- ============================ STACKS ============================ -->
-    <section class="section" id="stacks">
-      <p class="eyebrow">stacks que uso</p>
-      <h2>A stack, fixa e por um motivo</h2>
-      <p class="section-lead">
-        Java e o ecossistema Spring do backend ao deploy. Nada aqui é moda: cada
-        peça foi dimensionada pra rodar barato e previsível numa VPS pequena.
-      </p>
-      <div class="stacks-grid">
-        <div class="stack-card">
-          <div class="stack-group">// linguagem &amp; framework</div>
-          <div class="tags">
-            <span class="tag">Java 25 LTS</span>
-            <span class="tag">Spring Boot 4</span>
-            <span class="tag">Spring Framework 7</span>
-            <span class="tag">Jakarta EE 11</span>
-          </div>
-        </div>
-        <div class="stack-card">
-          <div class="stack-group">// persistência</div>
-          <div class="tags">
-            <span class="tag">Spring Data JPA</span>
-            <span class="tag">Hibernate ORM 7</span>
-            <span class="tag">Spring Data MongoDB</span>
-            <span class="tag">Flyway</span>
-          </div>
-        </div>
-        <div class="stack-card">
-          <div class="stack-group">// bancos</div>
-          <div class="tags">
-            <span class="tag">PostgreSQL 17</span>
-            <span class="tag">MongoDB 8.0</span>
-          </div>
-        </div>
-        <div class="stack-card">
-          <div class="stack-group">// infra &amp; deploy</div>
-          <div class="tags">
-            <span class="tag">Docker</span>
-            <span class="tag">Docker Compose</span>
-            <span class="tag">Caddy</span>
-            <span class="tag">VPS Hostinger</span>
-          </div>
-        </div>
-        <div class="stack-card">
-          <div class="stack-group">// testes</div>
-          <div class="tags">
-            <span class="tag">JUnit 5</span>
-            <span class="tag">Mockito</span>
-            <span class="tag">Testcontainers</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============================ GANCHO ============================ -->
-    <section class="section" id="gancho">
-      <div class="contact-box">
-        <p class="eyebrow">quer um serviço meu?</p>
-        <h2>Precisa de uma solução sob medida?</h2>
-        <p class="section-lead">
-          Se algum destes projetos se parece com um problema que você tem ou precisa de uma solução para o seu negócio, eu
-          construo do mesmo jeito: uma decisão de engenharia de cada vez,
-          rodando barato e sem sustos. API, painel, integração ou o sistema inteiro.
+    <!-- =========================== CONTATO =========================== -->
+    <section class="contact wrap" id="contato">
+      <div class="contact-text">
+        <h2 class="reveal">Entre em contato</h2>
+        <p class="contact-lead reveal">
+          Desenvolvo sistemas web sob medida e plataformas SaaS para empresas,
+          do levantamento de requisitos ao deploy em produção. Trabalho de forma
+          independente, entregando a solução completa: APIs, painéis
+          administrativos, integrações de pagamento com PIX, automação de
+          processos e infraestrutura própria em VPS.
         </p>
-        <div class="actions">
-          <a href="#contato" class="btn btn--primary">Quero um orçamento</a>
-          <a href="https://github.com/ThiagoHeckler" class="btn btn--secondary"
-             target="_blank" rel="noopener">Ver o código</a>
-        </div>
+        <p class="contact-stack reveal">
+          Stack principal: Laravel, Spring Boot, FastAPI, React, PostgreSQL, MySQL e Docker.
+        </p>
+        <a class="email reveal" translate="no" href="mailto:thiagoecheckler@gmail.com">thiagoecheckler@gmail.com</a>
+        <ul class="elsewhere reveal">
+          <li><a href="https://www.linkedin.com/in/thiago-heckler" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/ThiagoHeckler" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
       </div>
-    </section>
-
-    <!-- ============================ CONTATO ============================ -->
-    <section class="section" id="contato">
-      <p class="eyebrow">contato para trabalho</p>
-      <h2>Tem interesse para trabalhar na sua empresa?</h2>
-      <p class="section-lead">
-        Entre em contato comigo para discutir oportunidades de trabalho.
-      </p>
-      <div class="contact-links">
-        <a class="contact-card" href="mailto:thiagoecheckler@gmail.com">
-          <div class="k">// e-mail</div>
-          <div class="v">thiagoecheckler@gmail.com</div>
-        </a>
-        <a class="contact-card" href="https://www.linkedin.com/in/thiago-heckler"
-           target="_blank" rel="noopener">
-          <div class="k">// linkedin</div>
-          <div class="v">in/thiago-heckler</div>
-        </a>
-        <a class="contact-card" href="https://github.com/ThiagoHeckler"
-           target="_blank" rel="noopener">
-          <div class="k">// github</div>
-          <div class="v">github.com/ThiagoHeckler</div>
-        </a>
-      </div>
-      <a href="mailto:thiagoecheckler@gmail.com" class="btn btn--primary">Enviar email</a>
+      <figure class="author reveal">
+        <img src="/img/profileGPT.png" alt="Foto de Thiago Heckler" width="360" height="360" loading="lazy">
+        <figcaption>
+          <b>Thiago Heckler</b>
+          <span>Desenvolvi, publiquei e mantenho os sete projetos desta página.</span>
+        </figcaption>
+      </figure>
     </section>
 
   </main>
 
-  <!-- ============================ FOOTER ============================ -->
   <footer class="site-footer">
-    <div class="container">
-      <p class="footer-stack">
-        Java 25 · Spring Boot 4 · PostgreSQL 17 · MongoDB 8 · Docker · Caddy
-      </p>
-      <div class="footer-links">
-        <a href="https://github.com/ThiagoHeckler" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://www.linkedin.com/in/thiago-heckler/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:thiagoecheckler@gmail.com">Email</a>
-      </div>
-      <p class="footer-note">
-        Site estático, servido direto pelo Caddy.
-      </p>
+    <div class="wrap footer-inner">
+      <p>Thiago Heckler, <span id="ano">2026</span></p>
+      <p>Java 25, Spring Boot 4, PostgreSQL 17 e MongoDB 8, numa VPS com Docker e Caddy.</p>
     </div>
   </footer>
 
-  <script>
-    document.getElementById('theme-toggle').addEventListener('click', function () {
-      var html = document.documentElement;
-      var next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    });
-  </script>
-
+  <script src="/js/main.js?v=20261007" defer></script>
 </body>
 </html>
