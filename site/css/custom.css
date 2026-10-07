@@ -487,6 +487,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
   .tab-name { font-size: 0.9375rem; }
   .info { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
   .contact { grid-template-columns: minmax(0, 1fr); gap: 3rem; }
+  .author { max-width: 18rem; }
 }
 
 @media (max-width: 640px) {
