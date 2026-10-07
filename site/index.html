@@ -19,7 +19,7 @@
         content="Portfólio de Thiago Heckler: sete sistemas em Java 25 e Spring Boot 4 no ar para você testar, cada um no seu subdomínio.">
 
   <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/css/custom.css?v=20261007e">
+  <link rel="stylesheet" href="/css/custom.css?v=20261007f">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2">
@@ -55,17 +55,61 @@
 
     <!-- ============================ HERO ============================ -->
     <section class="hero wrap">
-      <h1 class="load" style="--o:1">Sistemas backend em Java, no ar para você&nbsp;testar.</h1>
-      <p class="hero-lead load" style="--o:2">
-        Sou Thiago Heckler, desenvolvedor backend. Estes são sete projetos com
-        Spring Boot 4, PostgreSQL e MongoDB, cada um rodando no seu próprio
-        endereço. Escolha um, veja o que ele faz e abra o site.
-      </p>
-      <div class="actions load" style="--o:3">
-        <a href="#projetos" class="btn btn--primary">Ver os projetos</a>
-        <a href="#contato" class="btn btn--outline">Entrar em contato agora</a>
-        <a href="https://github.com/ThiagoHeckler" class="btn btn--ghost" target="_blank" rel="noopener">GitHub</a>
+      <div class="hero-text">
+        <h1 class="load" style="--o:1">Sistemas backend em Java, no ar para você&nbsp;testar.</h1>
+        <p class="hero-lead load" style="--o:2">
+          Sou Thiago Heckler, desenvolvedor backend. Estes são sete projetos com
+          Spring Boot 4, PostgreSQL e MongoDB, cada um rodando no seu próprio
+          endereço. Escolha um, veja o que ele faz e abra o site.
+        </p>
+        <div class="actions load" style="--o:3">
+          <a href="#projetos" class="btn btn--primary">Ver os projetos</a>
+          <a href="#contato" class="btn btn--outline">Entrar em contato agora</a>
+          <a href="https://github.com/ThiagoHeckler" class="btn btn--ghost" target="_blank" rel="noopener">GitHub</a>
+        </div>
       </div>
+
+      <!-- Ilustração: o navegador do visitante ligado à VPS onde o portfólio roda -->
+      <figure class="infra load" style="--o:4">
+        <svg viewBox="0 0 520 430" role="img" aria-labelledby="infra-title">
+          <title id="infra-title">Um notebook conectado a uma nuvem com a VPS que roda os projetos</title>
+
+          <!-- Nuvem -->
+          <path class="i-cloud" d="M240 214H196c-38 0-62-26-62-58 0-30 24-55 55-57 9-47 50-79 98-79 40 0 75 23 90 57 9-3 18-5 28-5 46 0 82 36 82 80 0 34-21 62-52 74"/>
+
+          <!-- Ligação notebook ↔ nuvem -->
+          <path class="i-wire" d="M126 300C126 248 190 246 232 236"/>
+          <path class="i-wire i-flow" d="M126 300C126 248 190 246 232 236"/>
+
+          <!-- VPS -->
+          <g class="i-vps">
+            <rect class="i-box" x="232" y="118" width="230" height="200" rx="12"/>
+            <text class="i-title" x="252" y="148">VPS em São Paulo</text>
+            <circle class="i-online" cx="436" cy="143" r="5"/>
+            <line class="i-sep" x1="232" y1="162" x2="462" y2="162"/>
+
+            <g class="i-row"><rect x="248" y="174" width="198" height="28" rx="6"/><circle cx="264" cy="188" r="4" class="i-led"/><text x="278" y="193">Caddy com HTTPS</text></g>
+            <g class="i-row"><rect x="248" y="208" width="198" height="28" rx="6"/><circle cx="264" cy="222" r="4" class="i-led"/><text x="278" y="227">7 apps Spring Boot</text></g>
+            <g class="i-row i-row--pg"><rect x="248" y="242" width="198" height="28" rx="6"/><circle cx="264" cy="256" r="4" class="i-led"/><text x="278" y="261">PostgreSQL 17</text></g>
+            <g class="i-row i-row--mongo"><rect x="248" y="276" width="198" height="28" rx="6"/><circle cx="264" cy="290" r="4" class="i-led"/><text x="278" y="295">MongoDB 8</text></g>
+          </g>
+
+          <!-- Notebook -->
+          <g class="i-laptop" transform="translate(-24 0)">
+            <rect class="i-box" x="40" y="300" width="220" height="104" rx="9"/>
+            <rect class="i-screen" x="50" y="310" width="200" height="84" rx="4"/>
+            <rect class="i-bar" x="60" y="319" width="180" height="14" rx="7"/>
+            <text class="i-url" x="70" y="330">thiagoheckler.com.br</text>
+            <rect class="i-line" x="60" y="343" width="110" height="9" rx="2"/>
+            <rect class="i-line i-line--dim" x="60" y="358" width="150" height="5" rx="2"/>
+            <rect class="i-line i-line--dim" x="60" y="368" width="130" height="5" rx="2"/>
+            <rect class="i-line i-line--pg" x="60" y="380" width="36" height="6" rx="2"/>
+            <rect class="i-line i-line--mongo" x="102" y="380" width="36" height="6" rx="2"/>
+            <path class="i-base" d="M20 404h260l-12 14H32z"/>
+          </g>
+        </svg>
+        <figcaption>Do seu navegador até uma VPS de 1 vCPU e 4 GB: Caddy, sete apps Java, um PostgreSQL e um MongoDB.</figcaption>
+      </figure>
     </section>
 
     <!-- ========================== PROJETOS ==========================

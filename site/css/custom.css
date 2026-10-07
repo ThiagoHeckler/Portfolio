@@ -127,10 +127,16 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 :root[data-theme="light"] .icon-sun { display: none; }
 
 /* ---------------------------- Hero ---------------------------- */
-.hero { padding-block: 3rem 5rem; }
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 3rem;
+  padding-block: 3rem 5rem;
+}
 .hero h1 {
   max-width: 21ch;
-  font-size: clamp(2.75rem, 7vw, 5.75rem);
+  font-size: clamp(2.75rem, 5.6vw, 5rem);
   font-weight: 800;
   font-stretch: 68%;
   line-height: 0.96;
@@ -153,6 +159,39 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 .btn--outline:hover { background: var(--btn-bg); color: var(--btn-text); }
 .btn--ghost { border-color: var(--line); }
 .btn--ghost:hover { border-color: var(--text); }
+
+/* Ilustração: navegador do visitante ligado à VPS */
+.infra { margin: 0; }
+.infra svg { display: block; width: 100%; height: auto; overflow: visible; }
+.infra text { font-family: var(--font); fill: var(--text); font-size: 13px; }
+.infra figcaption { margin-top: 1rem; max-width: 32rem; font-size: 0.875rem; color: var(--muted); }
+
+.i-cloud { fill: none; stroke: var(--line); stroke-width: 2; stroke-linecap: round; }
+.i-box { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.i-sep { stroke: var(--line); }
+.i-title { font-weight: 700; font-stretch: 87.5%; font-size: 15px !important; }
+.i-row rect { fill: color-mix(in srgb, var(--text) 4%, transparent); }
+.i-led { fill: var(--muted); }
+.i-row--pg .i-led { fill: var(--pg); }
+.i-row--mongo .i-led { fill: var(--mongo); }
+.i-online { fill: var(--mongo); }
+
+.i-wire { fill: none; stroke: var(--line); stroke-width: 2; }
+.i-flow { stroke: var(--pg); stroke-dasharray: 6 14; stroke-linecap: round; animation: flow 1.6s linear infinite; }
+
+.i-screen { fill: var(--bg); }
+.i-bar { fill: var(--surface); }
+.infra .i-url { font-size: 9px; fill: var(--muted); }
+.i-line { fill: var(--text); }
+.i-line--dim { fill: var(--line); }
+.i-line--pg { fill: var(--pg); }
+.i-line--mongo { fill: var(--mongo); }
+.i-base { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; stroke-linejoin: round; }
+
+/* O ponto "no ar" pulsa; o fio mostra tráfego descendo para o notebook */
+.i-online { animation: pulse 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes flow { to { stroke-dashoffset: 40; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
 /* Entrada da página: uma sequência só */
 .js .load { animation: rise 0.7s var(--ease) both; animation-delay: calc(var(--o) * 90ms + 80ms); }
@@ -491,6 +530,11 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
   .info { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
   .contact { grid-template-columns: minmax(0, 1fr); gap: 3rem; }
   .author { max-width: 18rem; }
+}
+
+@media (max-width: 999px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+  .infra { max-width: 32rem; }
 }
 
 @media (max-width: 640px) {
