@@ -414,6 +414,9 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
 .author span { display: block; margin-top: 0.25rem; color: var(--muted); font-size: 0.9375rem; }
 .contact h2 { font-size: clamp(2rem, 4vw, 2.75rem); font-stretch: 75%; }
 .contact-lead { margin-top: 1rem; max-width: 38rem; color: var(--muted); font-size: 1.125rem; }
+.contact-company { margin-top: 1rem; max-width: 38rem; color: var(--muted); font-size: 1.125rem; }
+.contact-company a { color: var(--text); font-weight: 600; text-decoration-color: var(--line); transition: text-decoration-color 0.2s; }
+.contact-company a:hover { text-decoration-color: var(--pg); }
 .contact-stack { margin-top: 1rem; max-width: 38rem; color: var(--text); font-size: 0.9375rem; }
 .email {
   display: inline-block; margin-top: 2.5rem;
@@ -424,7 +427,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
   transition: text-decoration-color 0.25s;
 }
 .email:hover { text-decoration-color: var(--pg); }
-.elsewhere { display: flex; gap: 1.5rem; margin-top: 1rem; }
+.elsewhere { display: flex; flex-wrap: wrap; gap: 0 1.5rem; margin-top: 1rem; }
 .elsewhere a {
   display: inline-flex; align-items: center; min-height: 2.75rem;
   text-decoration-color: var(--line);
