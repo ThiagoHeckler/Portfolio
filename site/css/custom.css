@@ -2,7 +2,7 @@
    custom.css — thiagoheckler.com.br
    O portfólio é um seletor de projetos: lista à esquerda, janela
    de navegador à direita. Marinho profundo, azul Postgres e verde
-   Mongo como únicas cores de destaque. Fonte: Archivo (eixo wdth).
+   Mongo nos projetos, com detalhes dourados na apresentação. Fonte: Archivo (eixo wdth).
    ============================================================ */
 
 @font-face {
@@ -686,4 +686,93 @@ h2 { font-size:clamp(2rem,3.8vw,3.3rem); letter-spacing:-.045em; font-weight:600
 @media(max-width:999px) {
   .stage { grid-template-columns:minmax(0,1fr); }
   .tabs { max-width:100%; }
+}
+
+/* Dourado editorial: luz e traços sobre a base azul da apresentação. */
+:root {
+  --gold: #d8b879;
+  --gold-button: #d8b879;
+  --gold-hover: #e6cb99;
+  --gold-rgb: 216 184 121;
+}
+:root[data-theme="light"] {
+  --gold: #88601f;
+  --gold-button: #d8b879;
+  --gold-hover: #e6cb99;
+  --gold-rgb: 136 96 31;
+}
+.hero { isolation: isolate; }
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  top: 0;
+  bottom: 0;
+  left: calc((100% - 100vw) / 2);
+  width: 100vw;
+  background:
+    radial-gradient(ellipse at 82% 28%, rgb(var(--gold-rgb) / .14), transparent 48%),
+    radial-gradient(ellipse at 12% 15%, rgb(8 200 248 / .065), transparent 45%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  top: 2rem;
+  right: var(--gutter);
+  width: min(42%, 31rem);
+  height: 65%;
+  border-top: 1px solid rgb(var(--gold-rgb) / .32);
+  border-right: 1px solid rgb(var(--gold-rgb) / .22);
+  border-top-right-radius: 12rem;
+}
+.brand-mark span,
+.nav-contact span,
+.hero .eyebrow,
+.portrait-index,
+.portrait-cross,
+.hero-bottom a span { color: var(--gold); }
+.nav-contact { transition: border-color .2s, background-color .2s; }
+.nav-contact:hover {
+  border-color: var(--gold);
+  background: rgb(var(--gold-rgb) / .07);
+}
+.hero .eyebrow .status-dot {
+  background: var(--gold);
+  box-shadow: 0 0 14px rgb(var(--gold-rgb) / .35);
+}
+.hero .btn--primary {
+  background: var(--gold-button);
+  border-color: var(--gold-button);
+  color: #081828;
+  box-shadow: 0 6px 24px rgb(var(--gold-rgb) / .12);
+}
+.hero .btn--primary:hover {
+  background: var(--gold-hover);
+  border-color: var(--gold-hover);
+}
+.hero .text-link { border-bottom-color: rgb(var(--gold-rgb) / .4); }
+.hero .text-link:hover,
+.hero-social a:hover { color: var(--gold); }
+.portrait-grid {
+  border-color: rgb(var(--gold-rgb) / .55);
+  background-image:
+    linear-gradient(rgb(var(--gold-rgb) / .18) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--gold-rgb) / .18) 1px, transparent 1px);
+}
+.portrait img { border-color: rgb(var(--gold-rgb) / .35); }
+.portrait figcaption { border-left: 2px solid var(--gold); }
+.hero-bottom {
+  border-top-color: rgb(var(--gold-rgb) / .3);
+  border-bottom-color: rgb(var(--gold-rgb) / .12);
+}
+@media (max-width: 640px) {
+  .hero::before {
+    background:
+      radial-gradient(ellipse at 95% 62%, rgb(var(--gold-rgb) / .13), transparent 52%),
+      radial-gradient(ellipse at 0% 10%, rgb(8 200 248 / .06), transparent 40%);
+  }
+  .hero::after { top: 1rem; width: 38%; height: 14rem; opacity: .6; }
 }
