@@ -212,7 +212,7 @@ a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px
   padding-block: 3rem;
 }
 
-.stage-side { position: relative; padding-left: 1.25rem; }
+.stage-side { position: relative; min-width: 0; padding-left: 1.25rem; }
 .stage-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.5rem; }
 .stage-head h2 { font-size: 1.75rem; font-stretch: 75%; }
 .counter { color: var(--muted); font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
@@ -682,3 +682,8 @@ h2 { font-size:clamp(2rem,3.8vw,3.3rem); letter-spacing:-.045em; font-weight:600
 .hero > *, .about > *, .venture > *, .contact > * { min-width:0; }
 .diary-visual { max-width:100%; }
 @media(max-width:640px) { .hero, .about, .venture { grid-template-columns:minmax(0,1fr); } }
+/* A lista de abas rola dentro da coluna, sem alargar a seção. */
+@media(max-width:999px) {
+  .stage { grid-template-columns:minmax(0,1fr); }
+  .tabs { max-width:100%; }
+}
