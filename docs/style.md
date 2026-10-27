@@ -138,12 +138,3 @@ Mapeamento direto de tokens na Covalia: `--fundo` = `--bg`,
 - Conferir contraste mínimo 4.5:1 para texto (`--muted` sobre `--bg` é o caso mais justo).
 - Depois de mudar CSS ou JS, atualizar o `?v=` dos links em `site/index.html`:
   o Caddyfile manda cachear `*.css` e `*.js` por 1 ano (`immutable`).
-
-## 7. Refinamento dourado da apresentação (2026-10-23)
-
-A apresentação mantém o fundo azul-marinho, a tipografia e o layout atuais.
-O dourado (`--gold: #d8b879`, no tema claro `#88601f`) aparece no botão
-principal do hero, em pequenos detalhes da marca e na moldura da foto.
-O token `--gold-rgb` permite aplicar transparência ao brilho radial do fundo
-e aos traços decorativos. Esses elementos são estáticos e não capturam cliques.
-O ciano e o verde continuam presentes no restante do site e nas prévias dos projetos.

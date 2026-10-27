@@ -74,4 +74,29 @@
   orientTabs();
   window.addEventListener('resize', orientTabs);
   document.getElementById('ano').textContent = new Date().getFullYear();
+  // Ilustrações que se montam quando entram na tela (Sobre e DevDiary).
+  document.querySelectorAll('.build, .diary-visual').forEach(function (element) {
+    if (!('IntersectionObserver' in window) || reduced.matches) return;
+    element.classList.add('is-pending');
+    var observer = new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting) return;
+      element.classList.remove('is-pending');
+      observer.disconnect();
+    }, { threshold:.4 });
+    observer.observe(element);
+  });
+  // As teclas ao redor da foto caem com a rolagem, acelerando como em queda livre.
+  var keys = document.querySelector('.portrait-keys');
+  if (keys && !reduced.matches) {
+    var ticking = false;
+    var drop = function () {
+      var y = Math.max(window.scrollY, 0);
+      keys.style.setProperty('--fall', Math.min(y * y / 350, 1200).toFixed(1));
+      ticking = false;
+    };
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(drop); }
+    }, { passive:true });
+    drop();
+  }
 })();
