@@ -17,3 +17,7 @@ docker-compose.override.yml
 
 # Logs
 caddy/logs/
+
+# Ferramentas de IA locais
+.claude-flow/
+ruvector.db
