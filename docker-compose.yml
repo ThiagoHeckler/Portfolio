@@ -51,6 +51,7 @@ services:
       - caddy_data:/data             # certificados TLS
       - caddy_config:/config
       - ./caddy/logs:/var/log/caddy
+      - ./sites/tasks:/srv/tasks:ro   # front da Task API (Next.js export), enviado por rsync
     networks: [web]
 
   # ----------------------------------------------------------
@@ -120,11 +121,22 @@ services:
   task-api:
     <<: *java-app
     image: thiagoheckler/task-api:latest
+    # Só Postgres: a âncora inclui o mongo, que a Task API não usa.
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Sem "ports:" de propósito: só o Caddy fala com a API. Com a porta aberta,
+    # um X-Forwarded-For forjado burlaria o limite de requisições por IP.
     environment:
       <<: *java-env
+      SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/taskapi
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      # Segredo próprio, separado do JWT_SECRET do auth-service
+      JWT_SECRET: ${TASKAPI_JWT_SECRET:?defina TASKAPI_JWT_SECRET no .env}
+      DEMO_SIGNUP_DAILY_LIMIT: ${TASKAPI_SIGNUP_DAILY_LIMIT:-100}
+      DEMO_RATE_LIMIT_PER_MINUTE: ${TASKAPI_RATE_LIMIT_PER_MINUTE:-120}
 
   link-shortener:
     <<: *java-app

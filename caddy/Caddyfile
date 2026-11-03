@@ -46,7 +46,34 @@ siscontabil.thiagoheckler.com.br {
 
 tasks.thiagoheckler.com.br {
 	import log_acesso
-	reverse_proxy task-api:8080
+	encode gzip
+	root * /srv/tasks
+
+	# API: remove o /api; o IP do visitante vem do Caddy, nunca do cliente
+	handle_path /api/* {
+		reverse_proxy task-api:8080 {
+			header_up X-Forwarded-For {remote_host}
+			header_up X-Forwarded-Prefix /api
+			# O Spring lê o Forwarded (RFC 7239) antes do X-Forwarded-For: forjado, burlaria
+			# o limite por IP e mudaria o host/porta das URLs do Swagger.
+			header_up -Forwarded
+			header_up -X-Forwarded-Port
+		}
+	}
+
+	# Front estático da demo (Next.js export)
+	handle {
+		try_files {path} {path}.html
+		file_server
+	}
+
+	@static path /_next/static/*
+	header @static Cache-Control "public, max-age=31536000, immutable"
+
+	handle_errors 404 {
+		rewrite * /404.html
+		file_server
+	}
 }
 
 links.thiagoheckler.com.br {
@@ -73,4 +100,28 @@ auth.thiagoheckler.com.br {
 pizzaria.thiagoheckler.com.br {
 	import log_acesso
 	reverse_proxy pizzaria:8080
+}
+
+basefit.72-60-49-243.sslip.io {
+      encode zstd gzip
+      reverse_proxy maismusculo:80
+}
+
+maismusculo.72-60-49-243.sslip.io {
+      encode zstd gzip
+      @painel not path /treino/* /avaliacao/* /build/*
+      redir @painel https://basefit.72-60-49-243.sslip.io{uri} permanent
+      reverse_proxy maismusculo:80
+}
+
+
+okmcobrancas.com.br, www.okmcobrancas.com.br {
+	import log_acesso
+	reverse_proxy okm-frontend:80
+}
+
+odontologia.72-60-49-243.sslip.io {
+	import log_acesso
+	encode zstd gzip
+	reverse_proxy odontologia:80
 }
