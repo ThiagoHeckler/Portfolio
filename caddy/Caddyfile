@@ -101,3 +101,27 @@ pizzaria.thiagoheckler.com.br {
 	import log_acesso
 	reverse_proxy pizzaria:8080
 }
+
+basefit.72-60-49-243.sslip.io {
+      encode zstd gzip
+      reverse_proxy maismusculo:80
+}
+
+maismusculo.72-60-49-243.sslip.io {
+      encode zstd gzip
+      @painel not path /treino/* /avaliacao/* /build/*
+      redir @painel https://basefit.72-60-49-243.sslip.io{uri} permanent
+      reverse_proxy maismusculo:80
+}
+
+
+okmcobrancas.com.br, www.okmcobrancas.com.br {
+	import log_acesso
+	reverse_proxy okm-frontend:80
+}
+
+odontologia.72-60-49-243.sslip.io {
+	import log_acesso
+	encode zstd gzip
+	reverse_proxy odontologia:80
+}
