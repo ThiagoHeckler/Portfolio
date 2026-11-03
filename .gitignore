@@ -21,3 +21,6 @@ caddy/logs/
 # Ferramentas de IA locais
 .claude-flow/
 ruvector.db
+
+# Front da Task API (gerado no repo Task_API, enviado por rsync)
+sites/tasks/

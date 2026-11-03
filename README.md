@@ -61,6 +61,22 @@ Com o wildcard (`*`), subdomínios novos resolvem sem tocar no DNS.
 3. Se usar Postgres: `docker compose exec postgres createdb -U portfolio nomedodb`
 4. `docker compose up -d caddy novo-projeto`
 
+## Deploy da Task API (tasks.thiagoheckler.com.br)
+
+A imagem `thiagoheckler/task-api` é buildada no PC e publicada no Docker Hub; o front
+(`web/out/` do repo Task_API) vai por rsync para `sites/tasks/`, que o Caddy serve em `/`.
+O Caddy repassa `/api/*` para a API sem o prefixo.
+
+- Uma vez: `TASKAPI_JWT_SECRET` no `.env` (`openssl rand -base64 48`), `mkdir -p sites/tasks`
+  e `docker compose up -d caddy` para montar a pasta.
+- Cada deploy: `scripts/deploy.sh` no repo Task_API (build, push, rsync, pull e up).
+- Rollback da API: `docker pull thiagoheckler/task-api:<sha-anterior>`,
+  `docker tag thiagoheckler/task-api:<sha-anterior> thiagoheckler/task-api:latest`,
+  `docker compose up -d task-api`. Só é seguro se não houver migration nova do Flyway
+  entre as duas versões.
+- O serviço `task-api` não publica porta: o limite por IP confia no `X-Forwarded-For`
+  que o Caddy escreve.
+
 ## Segurança
 
 - Bancos **não** têm portas expostas — acessíveis só pela rede interna do Docker.
