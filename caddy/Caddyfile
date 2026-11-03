@@ -54,6 +54,10 @@ tasks.thiagoheckler.com.br {
 		reverse_proxy task-api:8080 {
 			header_up X-Forwarded-For {remote_host}
 			header_up X-Forwarded-Prefix /api
+			# O Spring lê o Forwarded (RFC 7239) antes do X-Forwarded-For: forjado, burlaria
+			# o limite por IP e mudaria o host/porta das URLs do Swagger.
+			header_up -Forwarded
+			header_up -X-Forwarded-Port
 		}
 	}
 
