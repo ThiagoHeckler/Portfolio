@@ -53,6 +53,13 @@
     <!-- Projetos: abas, setas, teclado e gestos de toque. -->
     <section class="projects" id="projetos" aria-labelledby="projetos-title">
       <div class="wrap section-heading"><div><p class="eyebrow">02 / PROJETOS SELECIONADOS</p><h2 id="projetos-title">Da ideia ao <span class="accent">deploy.</span></h2></div><p>Explore os projetos, conheça as escolhas técnicas<br>e abra cada aplicação para experimentar.</p></div>
+      <!--
+        Cada projeto tem três peças com o mesmo id, na mesma ordem:
+          aba   (.tab,  id t-<id>)  nome, selo e data-url (texto da barra da janela)
+          tela  (.mock, data-for)   ilustração
+          card  (.info, id i-<id>)  título, descrição, destaque, banco, tecnologias e links
+        Link que não existe não entra: sem botão vazio, sem "#".
+      -->
       <div class="proj-track">
         <div class="stage wrap" data-db="pg">
 
@@ -64,26 +71,26 @@
 
             <div class="tabs" role="tablist" aria-label="Projetos" aria-orientation="vertical">
               <span class="tab-indicator" aria-hidden="true"></span>
-              <button class="tab" role="tab" id="t-tasks" aria-controls="i-tasks" aria-selected="true" data-sub="tasks" data-db="pg">
-                <span class="tab-name">Task API</span><span class="tab-sub" translate="no">tasks.</span>
+              <button class="tab" role="tab" id="t-rag" aria-controls="i-rag" aria-selected="true" data-sub="rag" data-db="pg" data-url="http://localhost:8000/perguntar">
+                <span class="tab-name">RAG Fiscal</span><span class="tab-sub">IA</span>
               </button>
-              <button class="tab" role="tab" id="t-loja" aria-controls="i-loja" aria-selected="false" tabindex="-1" data-sub="loja" data-db="pg">
-                <span class="tab-name">Mercado Virtual</span><span class="tab-sub" translate="no">loja.</span>
+              <button class="tab" role="tab" id="t-auditor" aria-controls="i-auditor" aria-selected="false" tabindex="-1" data-sub="auditor" data-db="pg" data-url="http://localhost:8088/v1/notas">
+                <span class="tab-name">Auditor NF-e</span><span class="tab-sub">IA</span>
               </button>
-              <button class="tab" role="tab" id="t-estoque" aria-controls="i-estoque" aria-selected="false" tabindex="-1" data-sub="estoque" data-db="pg">
-                <span class="tab-name">Estoque Dashboard</span><span class="tab-sub" translate="no">estoque.</span>
+              <button class="tab" role="tab" id="t-giro" aria-controls="i-giro" aria-selected="false" tabindex="-1" data-sub="giro" data-db="pg" data-url="http://localhost:15173">
+                <span class="tab-name">Girô</span><span class="tab-sub">Sistema</span>
               </button>
-              <button class="tab" role="tab" id="t-auth" aria-controls="i-auth" aria-selected="false" tabindex="-1" data-sub="auth" data-db="pg">
-                <span class="tab-name">Auth Service</span><span class="tab-sub" translate="no">auth.</span>
+              <button class="tab" role="tab" id="t-prospecta" aria-controls="i-prospecta" aria-selected="false" tabindex="-1" data-sub="prospecta" data-db="local" data-url="http://localhost:3737">
+                <span class="tab-name">Prospecta</span><span class="tab-sub">IA</span>
               </button>
-              <button class="tab" role="tab" id="t-links" aria-controls="i-links" aria-selected="false" tabindex="-1" data-sub="links" data-db="mongo">
-                <span class="tab-name">Link Shortener</span><span class="tab-sub" translate="no">links.</span>
+              <button class="tab" role="tab" id="t-tasks" aria-controls="i-tasks" aria-selected="false" tabindex="-1" data-sub="tasks" data-db="pg" data-url="https://tasks.thiagoheckler.com.br">
+                <span class="tab-name">Task API</span><span class="tab-sub">API</span>
               </button>
-              <button class="tab" role="tab" id="t-chat" aria-controls="i-chat" aria-selected="false" tabindex="-1" data-sub="chat" data-db="mongo">
-                <span class="tab-name">Chat em tempo real</span><span class="tab-sub" translate="no">chat.</span>
+              <button class="tab" role="tab" id="t-auth" aria-controls="i-auth" aria-selected="false" tabindex="-1" data-sub="auth" data-db="pg" data-url="https://auth.thiagoheckler.com.br">
+                <span class="tab-name">Auth Service</span><span class="tab-sub">API</span>
               </button>
-              <button class="tab" role="tab" id="t-pizzaria" aria-controls="i-pizzaria" aria-selected="false" tabindex="-1" data-sub="pizzaria" data-db="both">
-                <span class="tab-name">Pizzaria Bollo</span><span class="tab-sub" translate="no">pizzaria.</span>
+              <button class="tab" role="tab" id="t-pizzaria" aria-controls="i-pizzaria" aria-selected="false" tabindex="-1" data-sub="pizzaria" data-db="both" data-url="https://pizzaria.thiagoheckler.com.br">
+                <span class="tab-name">Pizzaria Bollo</span><span class="tab-sub">Sistema</span>
               </button>
             </div>
 
@@ -96,12 +103,62 @@
             <div class="win" aria-hidden="true">
               <div class="win-bar">
                 <span class="win-dots"><i></i><i></i><i></i></span>
-                <span class="win-url" translate="no">https://<span class="url-sub">tasks</span>.thiagoheckler.com.br</span>
+                <span class="win-url" translate="no"><span class="url-pre">http://</span><span class="url-sub">localhost</span><span class="url-rest">:8000/perguntar</span></span>
               </div>
               <div class="win-view">
 
+                <!-- RAG Fiscal: pergunta e resposta com citações -->
+                <div class="mock mock--rag is-active" data-for="rag">
+                  <p class="m-room" data-s>RAG Fiscal <span>busca híbrida + reordenação</span></p>
+                  <div class="m-msg m-msg--me" data-s><b>Pergunta</b><p>Qual CFOP para venda a não contribuinte de outro estado?</p></div>
+                  <div class="m-msg m-msg--answer" data-s><b>Resposta</b><p>Mercadoria comprada de terceiros: <strong>6.108</strong> <sup>[1]</sup>. Produção do próprio estabelecimento: <strong>6.107</strong> <sup>[2]</sup>.</p></div>
+                  <ul class="m-sources" data-s>
+                    <li><b>[1]</b> CFOP 6.108 · Tabela CFOP, SEF-SC</li>
+                    <li><b>[2]</b> CFOP 6.107 · Tabela CFOP, SEF-SC</li>
+                  </ul>
+                </div>
+
+                <!-- Auditor NF-e: achados de uma nota -->
+                <div class="mock mock--auditor" data-for="auditor">
+                  <p class="m-title" data-s>Nota recebida <span class="m-chip">CONCLUIDA</span></p>
+                  <div class="m-ep" data-s><b class="del">ERRO</b><code>R002</code><span>CFOP 5.102 em operação interestadual</span></div>
+                  <div class="m-ep" data-s><b class="del">ERRO</b><code>R005</code><span>Soma dos itens não fecha com o total</span></div>
+                  <div class="m-ep" data-s><b class="put">ALERTA</b><code>R004</code><span>NCM genérico 00000000 no item 3</span></div>
+                  <div class="m-ep" data-s><b class="get">INFO</b><code>LLM</code><span>Conferir a classificação fiscal do item 3</span></div>
+                </div>
+
+                <!-- Girô: vitrine que se repõe sozinha -->
+                <div class="mock mock--giro" data-for="giro">
+                  <div class="m-shop-top" data-s><span>Girô</span><span class="m-cart">Carrinho (2)</span></div>
+                  <div class="m-products">
+                    <div class="m-prod" data-s><i></i><span>Café em grãos 1 kg</span><b>R$ 54,90</b></div>
+                    <div class="m-prod" data-s><i></i><span>Azeite extra virgem</span><b>R$ 39,90</b></div>
+                    <div class="m-prod m-prod--out" data-s><i></i><span>Queijo canastra</span><b>Esgotado</b></div>
+                    <div class="m-prod m-prod--refill" data-s><i></i><span>Granola artesanal</span><b>Repondo prateleira</b></div>
+                    <div class="m-prod" data-s><i></i><span>Mel silvestre</span><b>R$ 31,00</b></div>
+                    <div class="m-prod" data-s><i></i><span>Pão de fermentação natural</span><b>R$ 18,00</b></div>
+                  </div>
+                </div>
+
+                <!-- Prospecta: leads e a equipe de agentes (dados fictícios) -->
+                <div class="mock mock--prospecta" data-for="prospecta">
+                  <div class="m-menu">
+                    <p class="m-col-title" data-s>Leads · padarias em Criciúma</p>
+                    <div class="m-item" data-s><b>Padaria Exemplo</b><span>Sem site · 4,7 no Google Maps</span><em>92</em></div>
+                    <div class="m-item" data-s><b>Pão &amp; Prosa</b><span>Site lento, sem HTTPS</span><em>78</em></div>
+                    <div class="m-item" data-s><b>Doce Trigo</b><span>Site atual, responsivo</span><em>31</em></div>
+                  </div>
+                  <div class="m-order" data-s>
+                    <p class="m-col-title">Equipe CrewAI</p>
+                    <p>Pesquisador: ficha pronta</p>
+                    <p>Analista: VENDER, landing page</p>
+                    <p>Redator: mensagem em 5 linhas</p>
+                    <span class="m-status">Validado pelo código</span>
+                  </div>
+                </div>
+
                 <!-- Task API: Swagger -->
-                <div class="mock mock--tasks is-active" data-for="tasks">
+                <div class="mock mock--tasks" data-for="tasks">
                   <div class="m-swagger">
                     <p class="m-title" data-s>Task API <span class="m-chip">OpenAPI 3.1</span></p>
                     <div class="m-ep" data-s><b class="get">GET</b><code>/api/tasks</code><span>Lista as tarefas</span></div>
@@ -109,32 +166,6 @@
                     <div class="m-ep" data-s><b class="put">PUT</b><code>/api/tasks/{id}</code><span>Atualiza</span></div>
                     <div class="m-ep" data-s><b class="del">DELETE</b><code>/api/tasks/{id}</code><span>Remove</span></div>
                     <pre class="m-json" data-s>{ "id": 42, "titulo": "Revisar PR", "status": "EM_ANDAMENTO" }</pre>
-                  </div>
-                </div>
-
-                <!-- Mercado Virtual: loja -->
-                <div class="mock mock--loja" data-for="loja">
-                  <div class="m-shop-top" data-s><span>Mercado Virtual</span><span class="m-cart">Carrinho (2)</span></div>
-                  <div class="m-products">
-                    <div class="m-prod" data-s><i></i><span>Café em grãos 1 kg</span><b>R$ 54,90</b></div>
-                    <div class="m-prod" data-s><i></i><span>Azeite extra virgem</span><b>R$ 39,90</b></div>
-                    <div class="m-prod m-prod--out" data-s><i></i><span>Queijo canastra</span><b>Esgotado</b></div>
-                    <div class="m-prod" data-s><i></i><span>Granola artesanal</span><b>R$ 22,50</b></div>
-                    <div class="m-prod" data-s><i></i><span>Mel silvestre</span><b>R$ 31,00</b></div>
-                    <div class="m-prod" data-s><i></i><span>Pão de fermentação natural</span><b>R$ 18,00</b></div>
-                  </div>
-                </div>
-
-                <!-- Estoque: painel -->
-                <div class="mock mock--estoque" data-for="estoque">
-                  <div class="m-kpis">
-                    <div data-s><span>Itens em estoque</span><b>1.284</b></div>
-                    <div data-s><span>Abaixo do mínimo</span><b class="warn">23</b></div>
-                    <div data-s><span>Movimentações hoje</span><b>96</b></div>
-                  </div>
-                  <div class="m-chart" data-s>
-                    <span style="--h:.42" data-m="mai"></span><span style="--h:.58" data-m="jun"></span><span style="--h:.51" data-m="jul"></span>
-                    <span style="--h:.74" data-m="ago"></span><span style="--h:.66" data-m="set"></span><span style="--h:.88" data-m="out"></span>
                   </div>
                 </div>
 
@@ -147,31 +178,6 @@
                   </div>
                   <p class="m-token" data-s><span class="h">eyJhbGciOiJIUzI1NiJ9</span>.<span class="p">eyJzdWIiOiJ0aGlhZ28iLCJyb2xlcyI6WyJBRE1JTiJdfQ</span>.<span class="s">Qm9sbG8tc2lnbmF0dXJl</span></p>
                   <pre class="m-json" data-s>{ "sub": "thiago", "roles": ["ADMIN"], "exp": 1767225600 }</pre>
-                </div>
-
-                <!-- Links: encurtador -->
-                <div class="mock mock--links" data-for="links">
-                  <div class="m-shorten" data-s>
-                    <span class="m-field m-field--long">https://exemplo.com.br/blog/2026/como-escolher-um-banco-de-dados</span>
-                    <span class="m-btn">Encurtar</span>
-                  </div>
-                  <p class="m-short" data-s translate="no">links.thiagoheckler.com.br/<b>x7Kp2</b></p>
-                  <div class="m-clicks" data-s>
-                    <p><b>1.932</b> cliques nos últimos 14 dias</p>
-                    <div class="m-spark">
-                      <i style="--h:.3"></i><i style="--h:.45"></i><i style="--h:.38"></i><i style="--h:.6"></i><i style="--h:.52"></i><i style="--h:.7"></i><i style="--h:.4"></i>
-                      <i style="--h:.55"></i><i style="--h:.82"></i><i style="--h:.64"></i><i style="--h:.9"></i><i style="--h:.72"></i><i style="--h:.58"></i><i style="--h:1"></i>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Chat -->
-                <div class="mock mock--chat" data-for="chat">
-                  <p class="m-room" data-s># geral <span>3 online</span></p>
-                  <div class="m-msg" data-s><b>Ana</b><p>Alguém já testou o deploy novo?</p></div>
-                  <div class="m-msg m-msg--me" data-s><b>Você</b><p>Testei agora, subiu em 40 segundos.</p></div>
-                  <div class="m-msg" data-s><b>Rafael</b><p>Boa. Vou abrir o PR do relatório.</p></div>
-                  <p class="m-typing" data-s>Ana está digitando<span>.</span><span>.</span><span>.</span></p>
                 </div>
 
                 <!-- Pizzaria -->
@@ -197,34 +203,73 @@
             <div class="project-navigation"><span>Prévia ilustrativa da aplicação</span><div><button type="button" class="project-prev" aria-label="Projeto anterior">←</button><span class="project-position" aria-live="polite" aria-atomic="true">01 / 07</span><button type="button" class="project-next" aria-label="Próximo projeto">→</button></div></div>
             <!-- Informações do projeto selecionado (conteúdo acessível) -->
             <div class="infos">
-              <div class="info is-active" role="tabpanel" id="i-tasks" aria-labelledby="t-tasks">
+              <div class="info is-active" role="tabpanel" id="i-rag" aria-labelledby="t-rag">
+                <div class="info-text">
+                  <h3>RAG Fiscal</h3>
+                  <p>Assistente que responde dúvidas de ICMS-SC, NCM e CFOP citando o artigo da lei ou o código de onde tirou a resposta.</p>
+                  <p class="info-highlight">Busca avaliada em 40 perguntas conferidas à mão: o acerto entre os 5 primeiros subiu de 35% (só vetorial) para 80% (busca híbrida + reordenação).</p>
+                  <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL + pgvector: busca por vetor e por texto no mesmo banco, fundidas numa consulta só.</p>
+                  <p class="info-stack">Python, LangChain, PostgreSQL + pgvector, FastAPI, fastembed (embeddings locais)</p>
+                </div>
+                <div class="info-links">
+                  <a class="btn btn--primary" href="https://github.com/ThiagoHeckler/rag-fiscal" target="_blank" rel="noopener">Ver código</a>
+                  <!-- TODO(Thiago): vídeo curto com uma pergunta e a resposta com citações (botão "Ver vídeo"). Demo pública fica para depois. -->
+                </div>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-auditor" aria-labelledby="t-auditor" hidden>
+                <div class="info-text">
+                  <h3>Auditor NF-e</h3>
+                  <p>Recebe XMLs de NF-e e aponta erros fiscais (CFOP incompatível com o destino, NCM inválido, total que não fecha) de forma assíncrona.</p>
+                  <p class="info-highlight">API em Go recebe e enfileira; worker em Python audita com regras fiscais e LangGraph, com retentativa, fila de mensagens mortas e idempotência pela chave de acesso.</p>
+                  <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: a chave de acesso é única, então a mesma nota nunca é auditada duas vezes.</p>
+                  <p class="info-stack">Go, Python, LangGraph, AWS S3 + SQS, PostgreSQL, Docker</p>
+                </div>
+                <div class="info-links">
+                  <a class="btn btn--primary" href="https://github.com/ThiagoHeckler/auditor-nfe" target="_blank" rel="noopener">Ver código</a>
+                  <!-- TODO(Thiago): demo em auditor.thiagoheckler.com.br depois do modo demonstração sem LLM. -->
+                </div>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-giro" aria-labelledby="t-giro" hidden>
+                <div class="info-text">
+                  <h3>Girô</h3>
+                  <p>Mercado virtual e estoque em dois sistemas que conversam por eventos: quando a prateleira cai abaixo do mínimo, a reposição dispara sozinha.</p>
+                  <p class="info-highlight">Sem broker externo: eventos por Transactional Outbox e consumo idempotente. O LLM só classifica tags; a reposição é determinística e auditável.</p>
+                  <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: um banco por sistema, e o evento é gravado na mesma transação da venda.</p>
+                  <p class="info-stack">Java 25, Spring Boot 4, PostgreSQL, Python + FastAPI, React</p>
+                </div>
+                <div class="info-links">
+                  <a class="btn btn--primary" href="https://github.com/ThiagoHeckler/Giro_market" target="_blank" rel="noopener">Ver código</a>
+                  <!-- TODO(Thiago): demo. Confirmar se é loja., estoque. ou um subdomínio novo. -->
+                </div>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-prospecta" aria-labelledby="t-prospecta" hidden>
+                <div class="info-text">
+                  <h3>Prospecta: CRM com agentes de IA</h3>
+                  <p>CRM próprio da Covalia que busca empresas no Google Maps, audita o site atual e prepara a abordagem comercial com IA.</p>
+                  <p class="info-highlight">Servidor MCP expõe as regras do CRM para o Claude Code e para uma equipe CrewAI (pesquisador, analista e redator). Os agentes só leem; a gravação passa por validação no código.</p>
+                  <p class="info-db"><span class="db-dot db-dot--local"></span>SQLite local: dados reais de clientes ficam na máquina, por isso não há demo pública.</p>
+                  <p class="info-stack">Next.js, TypeScript, Prisma, MCP, CrewAI (Python), Electron</p>
+                </div>
+                <div class="info-links">
+                  <p class="info-note">Uso interno, sem demo pública</p>
+                  <!-- TODO(Thiago): vídeo ou prints; código só se o repositório for aberto (conferir .env, chaves e *.db no histórico). -->
+                </div>
+              </div>
+
+              <div class="info" role="tabpanel" id="i-tasks" aria-labelledby="t-tasks" hidden>
                 <div class="info-text">
                   <h3>Task API</h3>
                   <p>API REST de tarefas, com Swagger UI para testar cada endpoint no navegador.</p>
                   <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: CRUD relacional clássico, o caso para mostrar JPA limpo.</p>
-                  <p class="info-stack">Spring Boot 4, Spring Data JPA, springdoc-openapi</p>
+                  <p class="info-stack">Java 25, Spring Boot 4, Spring Data JPA, springdoc-openapi</p>
                 </div>
-                <a class="btn btn--primary" href="https://tasks.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Task API</a>
-              </div>
-
-              <div class="info" role="tabpanel" id="i-loja" aria-labelledby="t-loja" hidden>
-                <div class="info-text">
-                  <h3>Mercado Virtual</h3>
-                  <p>E-commerce com catálogo de produtos, carrinho e pedidos.</p>
-                  <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: carrinho, estoque e pagamento em transações atômicas. Não se vende o que acabou.</p>
-                  <p class="info-stack">Spring Boot 4, Spring Data JPA, Thymeleaf</p>
+                <div class="info-links">
+                  <a class="btn btn--primary" href="https://tasks.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir demo</a>
+                  <a class="btn btn--ghost" href="https://github.com/ThiagoHeckler/Task_API" target="_blank" rel="noopener">Ver código</a>
                 </div>
-                <a class="btn btn--primary" href="https://loja.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Mercado Virtual</a>
-              </div>
-
-              <div class="info" role="tabpanel" id="i-estoque" aria-labelledby="t-estoque" hidden>
-                <div class="info-text">
-                  <h3>Estoque Dashboard</h3>
-                  <p>Painel de estoque com relatórios, alertas de mínimo e gráficos.</p>
-                  <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: relatórios pedem agregações SQL e joins entre tabelas.</p>
-                  <p class="info-stack">Spring Boot 4, Spring Data JPA, Thymeleaf</p>
-                </div>
-                <a class="btn btn--primary" href="https://estoque.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Estoque Dashboard</a>
               </div>
 
               <div class="info" role="tabpanel" id="i-auth" aria-labelledby="t-auth" hidden>
@@ -232,29 +277,12 @@
                   <h3>Auth Service</h3>
                   <p>Cadastro, login e autorização por papéis, com tokens JWT.</p>
                   <p class="info-db"><span class="db-dot db-dot--pg"></span>PostgreSQL: usuários, papéis e tokens exigem consistência forte.</p>
-                  <p class="info-stack">Spring Boot 4, Spring Security, JWT</p>
+                  <p class="info-stack">Java 25, Spring Boot 4, Spring Security, JWT</p>
                 </div>
-                <a class="btn btn--primary" href="https://auth.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Auth Service</a>
-              </div>
-
-              <div class="info" role="tabpanel" id="i-links" aria-labelledby="t-links" hidden>
-                <div class="info-text">
-                  <h3>Link Shortener</h3>
-                  <p>Encurtador de URLs com contagem de cliques por dia.</p>
-                  <p class="info-db"><span class="db-dot db-dot--mongo"></span>MongoDB: documentos simples, leitura intensa e contadores de clique.</p>
-                  <p class="info-stack">Spring Boot 4, Spring Data MongoDB</p>
+                <div class="info-links">
+                  <a class="btn btn--primary" href="https://auth.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir demo</a>
+                  <!-- TODO(Thiago): o repositório Auth_Service só tem o README; link de código quando houver código. -->
                 </div>
-                <a class="btn btn--primary" href="https://links.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Link Shortener</a>
-              </div>
-
-              <div class="info" role="tabpanel" id="i-chat" aria-labelledby="t-chat" hidden>
-                <div class="info-text">
-                  <h3>Chat em tempo real</h3>
-                  <p>Salas de conversa com mensagens ao vivo via WebSocket e STOMP.</p>
-                  <p class="info-db"><span class="db-dot db-dot--mongo"></span>MongoDB: cada mensagem é um documento; escrita intensa e schema flexível.</p>
-                  <p class="info-stack">Spring Boot 4, WebSocket, STOMP</p>
-                </div>
-                <a class="btn btn--primary" href="https://chat.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir o chat</a>
               </div>
 
               <div class="info" role="tabpanel" id="i-pizzaria" aria-labelledby="t-pizzaria" hidden>
@@ -265,7 +293,10 @@
                   <p class="info-db"><span class="db-dot db-dot--mongo"></span>Cardápio no MongoDB, com tamanhos e ingredientes aninhados num documento.</p>
                   <p class="info-stack">Spring Boot 4, Spring Data JPA, Spring Data MongoDB, Thymeleaf</p>
                 </div>
-                <a class="btn btn--primary" href="https://pizzaria.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir Pizzaria Bollo</a>
+                <div class="info-links">
+                  <a class="btn btn--primary" href="https://pizzaria.thiagoheckler.com.br" target="_blank" rel="noopener">Abrir demo</a>
+                  <!-- TODO(Thiago): o repositório "pizzaria" é Laravel + MySQL e privado; confirmar qual projeto este card descreve. -->
+                </div>
               </div>
             </div>
 
