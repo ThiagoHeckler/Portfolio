@@ -20,7 +20,11 @@
     });
     var tab = tabs[current];
     stage.dataset.db = tab.dataset.db;
-    document.querySelector('.url-sub').textContent = tab.dataset.sub;
+    // "https://tasks.thiagoheckler.com.br" vira https:// + tasks (destacado) + .thiagoheckler.com.br
+    var url = tab.dataset.url.match(/^([a-z]+:\/\/)?([^.:/]*)(.*)$/);
+    document.querySelector('.url-pre').textContent = url[1] || '';
+    document.querySelector('.url-sub').textContent = url[2];
+    document.querySelector('.url-rest').textContent = url[3];
     document.querySelector('.counter-now').textContent = current + 1;
     position.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(tabs.length).padStart(2, '0');
     if (tabs[0].parentElement.scrollWidth > tabs[0].parentElement.clientWidth) {
