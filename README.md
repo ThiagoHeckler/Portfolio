@@ -1,6 +1,6 @@
 # Infraestrutura — thiagoheckler.com.br
 
-Portfólio com site principal estático + 7 projetos Java 25 / Spring Boot 4
+Portfólio com site principal estático + 5 projetos Java 25 / Spring Boot 4
 em subdomínios, PostgreSQL 17 e MongoDB 8, tudo numa VPS de 1 vCPU / 4 GB.
 
 ## Estrutura
@@ -48,9 +48,9 @@ Com o wildcard (`*`), subdomínios novos resolvem sem tocar no DNS.
 
 ## Rotina p/ 1 vCPU
 
-- **Nunca suba os 7 apps de uma vez na primeira instalação.** Suba de 2 em 2
+- **Nunca suba todos os apps de uma vez na primeira instalação.** Suba de 2 em 2
   (`docker compose up -d siscontabil task-api`, espere ficarem saudáveis, siga).
-  Com um núcleo, 7 JVMs inicializando juntas se atropelam.
+  Com um núcleo, várias JVMs inicializando juntas se atropelam.
 - Deploy de um projeto: `docker compose pull siscontabil && docker compose up -d siscontabil`
 - Monitorar memória: `docker stats --no-stream`
 
