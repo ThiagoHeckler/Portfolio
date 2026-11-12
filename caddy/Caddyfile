@@ -76,20 +76,9 @@ tasks.thiagoheckler.com.br {
 	}
 }
 
-links.thiagoheckler.com.br {
-	import log_acesso
-	reverse_proxy link-shortener:8080
-}
-
 estoque.thiagoheckler.com.br {
 	import log_acesso
 	reverse_proxy estoque-dashboard:8080
-}
-
-chat.thiagoheckler.com.br {
-	import log_acesso
-	# WebSocket funciona sem config extra — o Caddy faz upgrade sozinho
-	reverse_proxy chat:8080
 }
 
 auth.thiagoheckler.com.br {

@@ -11,8 +11,9 @@ Portfólio pessoal em `thiagoheckler.com.br` composto por:
 - **Site principal**: página de apresentação **100% estática** (HTML/CSS puro,
   sem framework JS, sem JVM), servida diretamente pelo Caddy. Contém a
   apresentação pessoal e a seção de projetos, com link e explicação de cada um.
-- **7 projetos demonstráveis**, cada um em seu subdomínio, rodando ao vivo
-  para visitantes testarem.
+- **Projetos demonstráveis** em subdomínios, rodando ao vivo para visitantes
+  testarem (hoje 5 apps Java na VPS). A seção de projetos do site também
+  mostra projetos sem demo pública (RAG Fiscal, Auditor NF-e, Girô, Prospecta).
 
 ## Stack (fixa — não sugerir alternativas)
 
@@ -32,21 +33,22 @@ construtor (sem @Autowired em campo), pattern matching e sealed classes onde
 fizer sentido, virtual threads habilitadas (`spring.threads.virtual.enabled=true`),
 exceptions tratadas via `@RestControllerAdvice` retornando `ProblemDetail`.
 
-## Os 7 projetos e seus bancos
+## Os apps da VPS e seus bancos
 
 | Projeto           | Subdomínio                          | Banco                | Justificativa técnica (aparece no site)            |
 |-------------------|-------------------------------------|----------------------|----------------------------------------------------|
 | SisContabil       | siscontabil.thiagoheckler.com.br    | PostgreSQL           | Dados financeiros: ACID, integridade referencial   |
 | Task API          | tasks.thiagoheckler.com.br          | PostgreSQL           | CRUD relacional clássico, JPA limpo                |
-| Link Shortener    | links.thiagoheckler.com.br          | MongoDB              | Documentos simples, leitura intensa, analytics de cliques |
 | Estoque Dashboard | estoque.thiagoheckler.com.br        | PostgreSQL           | Relatórios, agregações SQL, joins                  |
-| Chat em tempo real| chat.thiagoheckler.com.br           | MongoDB              | Mensagens como documentos, escrita intensa; WebSocket/STOMP |
 | Auth Service      | auth.thiagoheckler.com.br           | PostgreSQL           | Usuários/roles/tokens pedem consistência forte; JWT |
 | Pizzaria Bollo    | pizzaria.thiagoheckler.com.br       | PostgreSQL + MongoDB | Pedidos no Postgres (transação); cardápio no Mongo (documentos aninhados) |
 
-Front por projeto: Pizzaria, Estoque e Chat têm interface (Thymeleaf).
-Task API, Auth Service e Link Shortener são APIs com landing estática +
-Swagger UI para teste. SisContabil: Thymeleaf.
+Front por projeto: Pizzaria e Estoque têm interface (Thymeleaf).
+Task API e Auth Service são APIs com landing estática + Swagger UI para
+teste. SisContabil: Thymeleaf.
+
+Link Shortener e Chat em tempo real foram descontinuados (nunca foram ao ar):
+saíram do site, do compose e do Caddyfile.
 
 ## Infraestrutura (restrição crítica: VPS 1 vCPU / 4 GB RAM)
 
@@ -59,7 +61,7 @@ orçamento de RAM**:
 - Site principal é estático justamente para não gastar uma JVM (~330 MB).
 - **Uma** instância de PostgreSQL (um database por projeto: `siscontabil`,
   `taskapi`, `estoque`, `auth`, `pizzaria`) e **uma** de MongoDB (um database
-  lógico por projeto: `links`, `chat`, `pizzaria`). Nunca um container de
+  lógico por projeto; hoje só `pizzaria`). Nunca um container de
   banco por app.
 - Cada app Java roda com `mem_limit: 384m` e:
   `JAVA_TOOL_OPTIONS=-Xmx160m -Xms64m -XX:MaxMetaspaceSize=128m -XX:+UseSerialGC -Xss512k -XX:MaxDirectMemorySize=32m`
@@ -69,7 +71,7 @@ orçamento de RAM**:
 - Mongo com `--wiredTigerCacheSizeGB 0.25`.
 - Bancos sem portas expostas à internet; acesso externo só via túnel SSH.
 - Rede Docker dividida: `web` (Caddy ↔ apps) e `data` (apps ↔ bancos).
-- Com 1 vCPU, nunca subir as 7 apps simultaneamente na primeira vez; subir
+- Com 1 vCPU, nunca subir todas as apps simultaneamente na primeira vez; subir
   de 2 em 2.
 - Evolução futura planejada: migrar 1–2 apps para GraalVM Native Image
   (Spring Boot 4 suporta nativamente) para reduzir RAM e startup.

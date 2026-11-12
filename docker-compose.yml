@@ -104,7 +104,7 @@ services:
     networks: [data]
 
   # ----------------------------------------------------------
-  # PROJETOS (7 apps Spring Boot)
+  # PROJETOS (5 apps Spring Boot)
   # Cada "image:" aponta p/ a imagem buildada no repo do projeto.
   # Todas herdam limites e JVM flags do bloco x-java-app.
   # ----------------------------------------------------------
@@ -138,13 +138,6 @@ services:
       DEMO_SIGNUP_DAILY_LIMIT: ${TASKAPI_SIGNUP_DAILY_LIMIT:-100}
       DEMO_RATE_LIMIT_PER_MINUTE: ${TASKAPI_RATE_LIMIT_PER_MINUTE:-120}
 
-  link-shortener:
-    <<: *java-app
-    image: thiagoheckler/link-shortener:latest
-    environment:
-      <<: *java-env
-      SPRING_DATA_MONGODB_URI: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/links?authSource=admin
-
   estoque-dashboard:
     <<: *java-app
     image: thiagoheckler/estoque-dashboard:latest
@@ -153,13 +146,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/estoque
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
-
-  chat:
-    <<: *java-app
-    image: thiagoheckler/chat:latest
-    environment:
-      <<: *java-env
-      SPRING_DATA_MONGODB_URI: mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongo:27017/chat?authSource=admin
 
   auth-service:
     <<: *java-app
