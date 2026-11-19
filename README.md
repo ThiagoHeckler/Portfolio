@@ -77,6 +77,35 @@ O Caddy repassa `/api/*` para a API sem o prefixo.
 - O serviço `task-api` não publica porta: o limite por IP confia no `X-Forwarded-For`
   que o Caddy escreve.
 
+## Deploy do lab-admin (admin.thiagoheckler.com.br)
+
+O painel do laboratório (repo `lab-admin`) gera o site estático no volume `lab-data`;
+o Caddy serve esse volume só para leitura. O admin fica **desligado por padrão**
+(profile `admin`): sobe para editar e para depois, e o site continua no ar.
+
+Uma vez, na VPS:
+
+1. Senhas no `.env` (ver `.env.example`), **antes** de subir o compose novo: sem
+   `LAB_BASIC_AUTH_HASH` o compose recusa subir, e com ele vazio o Caddy derrubaria
+   todos os sites.
+   ```bash
+   docker run --rm caddy:2-alpine caddy hash-password --plaintext 'senha-do-caddy'
+   docker run --rm caddy:2-alpine caddy hash-password --plaintext 'senha-do-app'
+   ```
+   `LAB_BASIC_AUTH_HASH='<hash 1>'` e `LAB_ADMIN_PASSWORD='{bcrypt}<hash 2>'`,
+   com aspas simples.
+2. Banco: `docker compose exec postgres createdb -U portfolio lab`
+   (o `01-databases.sql` só roda na primeira subida do Postgres).
+3. `git pull` e `docker compose up -d caddy` (monta o volume e lê os blocos novos).
+
+Cada deploy: `scripts/deploy.sh` no repo `lab-admin` (build, push, pull, up e espera o
+health). Depois de editar e publicar: `docker compose stop lab-admin`.
+
+Troca do site: o laboratório aparece primeiro em `novo.thiagoheckler.com.br` (com
+`noindex`). Conferido, trocar o `root` do bloco `thiagoheckler.com.br` para
+`/srv/lab/site/current`, apagar o bloco `novo.` e `docker compose exec caddy caddy reload
+--config /etc/caddy/Caddyfile`. A pasta `site/` antiga fica como volta rápida.
+
 ## Segurança
 
 - Bancos **não** têm portas expostas — acessíveis só pela rede interna do Docker.
