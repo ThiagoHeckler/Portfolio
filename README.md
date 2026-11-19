@@ -101,10 +101,10 @@ Uma vez, na VPS:
 Cada deploy: `scripts/deploy.sh` no repo `lab-admin` (build, push, pull, up e espera o
 health). Depois de editar e publicar: `docker compose stop lab-admin`.
 
-Troca do site: o laboratório aparece primeiro em `novo.thiagoheckler.com.br` (com
-`noindex`). Conferido, trocar o `root` do bloco `thiagoheckler.com.br` para
-`/srv/lab/site/current`, apagar o bloco `novo.` e `docker compose exec caddy caddy reload
---config /etc/caddy/Caddyfile`. A pasta `site/` antiga fica como volta rápida.
+Site principal: o Caddy serve `thiagoheckler.com.br` de `/srv/lab/site/current`, o
+release mais recente publicado pelo admin. Depois de `git pull` com mudança no Caddyfile:
+`docker compose exec caddy caddy reload --config /etc/caddy/Caddyfile`. A pasta `site/`
+antiga continua montada em `/srv/site`; voltar = trocar o `root` para ela e recarregar.
 
 ## Segurança
 
