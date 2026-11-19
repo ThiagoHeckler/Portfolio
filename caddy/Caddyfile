@@ -33,6 +33,28 @@ thiagoheckler.com.br {
 	header @static Cache-Control "public, max-age=31536000, immutable"
 }
 
+# ---------- Laboratório (site gerado pelo lab-admin) ----------
+# Prévia temporária: confere o laboratório antes de trocar a raiz. Para trocar, usar
+# "root * /srv/lab/site/current" no bloco thiagoheckler.com.br e apagar este bloco.
+novo.thiagoheckler.com.br {
+	import log_acesso
+	root * /srv/lab/site/current
+	file_server
+	encode gzip
+	header X-Robots-Tag "noindex, nofollow"
+}
+
+# Painel. basic_auth barra robôs antes do login do app; gerar o hash com
+#   docker run --rm caddy:2-alpine caddy hash-password --plaintext 'senha'
+# e pôr no .env como LAB_BASIC_AUTH_HASH, entre aspas simples (o hash tem $).
+admin.thiagoheckler.com.br {
+	import log_acesso
+	basic_auth {
+		{$LAB_BASIC_AUTH_USER:admin} {$LAB_BASIC_AUTH_HASH}
+	}
+	reverse_proxy lab-admin:8080
+}
+
 # Redireciona www -> raiz
 www.thiagoheckler.com.br {
 	redir https://thiagoheckler.com.br{uri} permanent

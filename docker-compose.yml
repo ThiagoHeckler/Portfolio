@@ -52,6 +52,12 @@ services:
       - caddy_config:/config
       - ./caddy/logs:/var/log/caddy
       - ./sites/tasks:/srv/tasks:ro   # front da Task API (Next.js export), enviado por rsync
+      - lab-data:/srv/lab:ro          # site do laboratório, gerado pelo lab-admin
+    environment:
+      # basic_auth do admin.thiagoheckler.com.br. Obrigatório: com o hash vazio o Caddy
+      # recusaria o Caddyfile inteiro e derrubaria todos os sites.
+      LAB_BASIC_AUTH_USER: ${LAB_BASIC_AUTH_USER:-admin}
+      LAB_BASIC_AUTH_HASH: ${LAB_BASIC_AUTH_HASH:?defina LAB_BASIC_AUTH_HASH no .env}
     networks: [web]
 
   # ----------------------------------------------------------
@@ -157,6 +163,30 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       JWT_SECRET: ${JWT_SECRET}
 
+  # Painel do laboratório: gera o site estático no volume lab-data, que o Caddy serve.
+  # Desligado por padrão (profile "admin") para não gastar mais uma JVM: sobe só para
+  # editar com `docker compose up -d lab-admin` e para com `docker compose stop lab-admin`.
+  # O site continua no ar com ele parado.
+  lab-admin:
+    <<: *java-app
+    image: thiagoheckler/lab-admin:latest
+    profiles: [admin]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      <<: *java-env
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/lab
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      LAB_ADMIN_USER: ${LAB_ADMIN_USER:-admin}
+      # Hash bcrypt com prefixo {bcrypt}; o app não sobe com senha em texto puro.
+      LAB_ADMIN_PASSWORD: ${LAB_ADMIN_PASSWORD:?defina LAB_ADMIN_PASSWORD no .env}
+      LAB_SITE_BASE_URL: https://thiagoheckler.com.br
+      LAB_RSS_URL: https://devdiary.cloud/rss.xml
+    volumes:
+      - lab-data:/srv/lab   # releases do site + mídia (mesmo volume: a publicação usa hard link)
+
   pizzaria:
     <<: *java-app
     image: thiagoheckler/pizzaria-bollo:latest
@@ -173,6 +203,7 @@ networks:
   data:  # apps <-> bancos (bancos não ficam na rede "web")
 
 volumes:
+  lab-data:
   caddy_data:
   caddy_config:
   pg_data:
